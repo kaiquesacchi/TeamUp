@@ -7,7 +7,9 @@ class Home extends Component {
 
 <div className="App">
 	<div className="AppBackground">
-		<Link to="/auth/sign-up" className="ButtonCentered Centralize">Começar</Link>
+		<div className="center">
+			<Link to="/auth/sign-up" className="ButtonCentered">Começar</Link>
+		</div>
 	</div>
 </div>
 
