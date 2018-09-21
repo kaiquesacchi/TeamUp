@@ -10,7 +10,7 @@
 	width: 100%;
 	background-image: url("./static/ballpen-blur-close-up-461077.jpg");
 	background-attachment: fixed;
-	background-size: cover; 
+	background-size: cover;
 }
 
 .AppBackground.Colapsed {
@@ -132,9 +132,9 @@
 }
 
 .center {
-    margin: auto;
+	margin: auto;
     width: 30%;
-    /*border: 3px solid green;*/
-    padding: 600px 0;
+    height: 100%;
     text-align: center;
+    padding: 35% 0 0 0;
 }
