@@ -14,3 +14,7 @@ body {
 .mr-20 {
 	margin-right: 20px !important;
 }
+
+button:hover {
+    cursor: pointer;
+}
