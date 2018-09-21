@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Link, NavLink, Switch } from 'react-router-dom';
 import './App.css';
 
 import Authentication from './pages/Authentication/Authentication';
+import Home from './pages/Home/Home';
 
 
 class App extends Component {
@@ -23,16 +24,7 @@ class App extends Component {
 }
 
 
-class Home extends Component {
-	render() {
-		return (
-<div>
-	Hello, World!
-</div>
 
-		);
-	}
-}
 
 
 export default App;

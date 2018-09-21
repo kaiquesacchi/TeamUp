@@ -8,8 +8,7 @@ class Authentication extends Component {
 		return (
 
 <div className="App">
-	<div className="AppInfo">
-		{/*Local para o LOGO, informações etc*/}
+	<div className="AppBackground Colapsed">
 	</div>
 	<div className="AppForm">
 		
