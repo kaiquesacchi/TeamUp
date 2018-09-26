@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import 'assets/css/index.css';
-import 'assets/css/App.css';
+import 'assets/css/Intro.css';
 
 import indexRoutes from "routes/index.jsx";
-import Home from "pages/Home/Home.js"
-import Authentication from "pages/Authentication/Authentication.js"
+import Home from "views/Home/Home.js"
+import Authentication from "views/Authentication/Authentication.js"
 
 
 ReactDOM.render(

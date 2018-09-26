@@ -7,10 +7,10 @@ class Authentication extends Component {
 	render() {
 		return (
 
-<div className="App">
-	<div className="AppBackground Colapsed">
+<div className="Intro">
+	<div className="IntroBackground Colapsed">
 	</div>
-	<div className="AppForm">
+	<div className="IntroForm">
 		
 		{/*Navegador superior*/}
 		<div className="FormTitle">
