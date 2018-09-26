@@ -16,7 +16,24 @@ import Icons from "views/Icons/Icons.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
+import Home from "pages/Home/Home.js"
+import Authentication from "pages/Authentication/Authentication.js"
+
 const dashboardRoutes = [
+  // {
+  //   path: "/",
+  //   sidebarName: "Home",
+  //   navbarName: "Material Dashboard",
+  //   icon: Dashboard,
+  //   component: Home
+  // },
+  // {
+  //   path: "/auth",
+  //   sidebarName: "Authentication",
+  //   navbarName: "Material Dashboard",
+  //   icon: Dashboard,
+  //   component: Authentication
+  // },
   {
     path: "/dashboard",
     sidebarName: "Dashboard",

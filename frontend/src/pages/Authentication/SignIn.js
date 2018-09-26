@@ -34,7 +34,7 @@ class SignIn extends Component {
 		return (
 
 <div className="FormCenter">
-	<form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+	<form className="FormFields" onSubmit={this.handleSubmit}>
 		<div className="FormField">
 			<label className="FormField__Label" htmlFor="email">Endereço de email</label>
 			<input type="email" id="email" className="FormField__Input" placeholder="Insira seu endereço de Email" name="email" value={this.state.email} onChange={this.handleChange} />
