@@ -11,14 +11,14 @@ import Unarchive from "@material-ui/icons/Unarchive";
 import VerifyProjects from "views/VerifyProjects/VerifyProjects.jsx";
 import StatusProject from "views/StatusProject/StatusProject.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
-import TableList from "views/TableList/TableList.jsx";
+import ProjectsList from "views/ProjectsList/ProjectsList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 
 const dashboardRoutes = [
   {
-    path: "/projetos",
+    path: "/inicio",
     sidebarName: "Projetos",
     navbarName: "Acompanhamento dos Projetos",
     icon: Dashboard,
@@ -39,11 +39,11 @@ const dashboardRoutes = [
     component: CreateDemand
   },
   {
-    path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
+    path: "/projetos",
+    sidebarName: "Lista de Projetos",
+    navbarName: "Lista de Projetos",
     icon: "content_paste",
-    component: TableList
+    component: ProjectsList
   },
   {
     path: "/typography",
