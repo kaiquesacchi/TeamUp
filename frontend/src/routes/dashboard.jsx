@@ -8,7 +8,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
+import VerifyProjects from "views/VerifyProjects/VerifyProjects.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
@@ -18,11 +18,11 @@ import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
 const dashboardRoutes = [
   {
-    path: "/dashboard",
-    sidebarName: "Dashboard",
-    navbarName: "Material Dashboard",
+    path: "/projetos",
+    sidebarName: "Projetos",
+    navbarName: "Acompanhamento dos Projetos",
     icon: Dashboard,
-    component: DashboardPage
+    component: VerifyProjects
   },
   {
     path: "/demanda",
@@ -66,7 +66,7 @@ const dashboardRoutes = [
     icon: Unarchive,
     component: UpgradeToPro
   },
-  { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
+  { redirect: true, path: "/", to: "/projetos", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;
