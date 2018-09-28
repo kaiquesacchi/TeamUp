@@ -9,7 +9,7 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import UserProfile from "views/UserProfile/UserProfile.jsx";
+import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Icons from "views/Icons/Icons.jsx";
@@ -25,11 +25,11 @@ const dashboardRoutes = [
     component: DashboardPage
   },
   {
-    path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
+    path: "/demanda",
+    sidebarName: "Cadastrar Demanda",
+    navbarName: "Demanda",
     icon: Person,
-    component: UserProfile
+    component: CreateDemand
   },
   {
     path: "/table",
