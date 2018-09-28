@@ -42,7 +42,7 @@ function CreateDemand(props) {
         <GridItem xs={12}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Cadatrar Demanda</h4>
+              <h4 className={classes.cardTitleWhite}>Cadastrar Demanda</h4>
               <p className={classes.cardCategoryWhite}>Complete os dados sobre sua necessidade</p>
             </CardHeader>
             <CardBody>
