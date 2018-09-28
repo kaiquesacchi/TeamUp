@@ -8,7 +8,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
-import VerifyProjects from "views/VerifyProjects/VerifyProjects.jsx";
+import Start from "views/Start/Start.jsx";
 import StatusProject from "views/StatusProject/StatusProject.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import ProjectsList from "views/ProjectsList/ProjectsList.jsx";
@@ -17,56 +17,56 @@ import Icons from "views/Icons/Icons.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 
 const dashboardRoutes = [
-  {
-    path: "/inicio",
-    sidebarName: "Projetos",
-    navbarName: "Acompanhamento dos Projetos",
-    icon: Dashboard,
-    component: VerifyProjects
-  },
-  {
-    path: "/projeto/status",
-    sidebarName: "Projeto",
-    navbarName: "Acompanhamento do Projeto",
-    icon: Dashboard,
-    component: StatusProject
-  },
-  {
-    path: "/demanda",
-    sidebarName: "Cadastrar Demanda",
-    navbarName: "Demanda",
-    icon: Person,
-    component: CreateDemand
-  },
-  {
-    path: "/projetos",
-    sidebarName: "Lista de Projetos",
-    navbarName: "Lista de Projetos",
-    icon: "content_paste",
-    component: ProjectsList
-  },
-  {
-    path: "/typography",
-    sidebarName: "Typography",
-    navbarName: "Typography",
-    icon: LibraryBooks,
-    component: Typography
-  },
-  {
-    path: "/icons",
-    sidebarName: "Icons",
-    navbarName: "Icons",
-    icon: BubbleChart,
-    component: Icons
-  },
-  {
-    path: "/notifications",
-    sidebarName: "Notifications",
-    navbarName: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage
-  },
-  { redirect: true, path: "/", to: "/projetos", navbarName: "Redirect" }
+	{
+		path: "/inicio",
+		sidebarName: "Início",
+		navbarName: "Informações Gerais",
+		icon: Dashboard,
+		component: Start
+	},
+	{
+		path: "/projeto/status",
+		sidebarName: "Projeto",
+		navbarName: "Acompanhamento do Projeto",
+		icon: Dashboard,
+		component: StatusProject
+	},
+	{
+		path: "/demanda",
+		sidebarName: "Cadastrar Demanda",
+		navbarName: "Demanda",
+		icon: Person,
+		component: CreateDemand
+	},
+	{
+		path: "/projetos",
+		sidebarName: "Lista de Projetos",
+		navbarName: "Lista de Projetos",
+		icon: "content_paste",
+		component: ProjectsList
+	},
+	{
+		path: "/typography",
+		sidebarName: "Typography",
+		navbarName: "Typography",
+		icon: LibraryBooks,
+		component: Typography
+	},
+	{
+		path: "/icons",
+		sidebarName: "Icons",
+		navbarName: "Icons",
+		icon: BubbleChart,
+		component: Icons
+	},
+	{
+		path: "/notifications",
+		sidebarName: "Notifications",
+		navbarName: "Notifications",
+		icon: Notifications,
+		component: NotificationsPage
+	},
+	{ redirect: true, path: "/", to: "/inicio", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;
