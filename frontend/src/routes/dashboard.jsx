@@ -9,12 +9,12 @@ import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
 import VerifyProjects from "views/VerifyProjects/VerifyProjects.jsx";
+import StatusProject from "views/StatusProject/StatusProject.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
-import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
 const dashboardRoutes = [
   {
@@ -23,6 +23,13 @@ const dashboardRoutes = [
     navbarName: "Acompanhamento dos Projetos",
     icon: Dashboard,
     component: VerifyProjects
+  },
+  {
+    path: "/projeto/status",
+    sidebarName: "Projeto",
+    navbarName: "Acompanhamento do Projeto",
+    icon: Dashboard,
+    component: StatusProject
   },
   {
     path: "/demanda",
@@ -58,13 +65,6 @@ const dashboardRoutes = [
     navbarName: "Notifications",
     icon: Notifications,
     component: NotificationsPage
-  },
-  {
-    path: "/upgrade-to-pro",
-    sidebarName: "Upgrade To PRO",
-    navbarName: "Upgrade To PRO",
-    icon: Unarchive,
-    component: UpgradeToPro
   },
   { redirect: true, path: "/", to: "/projetos", navbarName: "Redirect" }
 ];
