@@ -8,7 +8,7 @@ import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
 // core components/views
-import VerifyProjects from "views/VerifyProjects/VerifyProjects.jsx";
+import Start from "views/Start/Start.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import TableList from "views/TableList/TableList.jsx";
 import Typography from "views/Typography/Typography.jsx";
@@ -17,56 +17,56 @@ import NotificationsPage from "views/Notifications/Notifications.jsx";
 import UpgradeToPro from "views/UpgradeToPro/UpgradeToPro.jsx";
 
 const dashboardRoutes = [
-  {
-    path: "/projetos",
-    sidebarName: "Projetos",
-    navbarName: "Acompanhamento dos Projetos",
-    icon: Dashboard,
-    component: VerifyProjects
-  },
-  {
-    path: "/demanda",
-    sidebarName: "Cadastrar Demanda",
-    navbarName: "Demanda",
-    icon: Person,
-    component: CreateDemand
-  },
-  {
-    path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
-    icon: "content_paste",
-    component: TableList
-  },
-  {
-    path: "/typography",
-    sidebarName: "Typography",
-    navbarName: "Typography",
-    icon: LibraryBooks,
-    component: Typography
-  },
-  {
-    path: "/icons",
-    sidebarName: "Icons",
-    navbarName: "Icons",
-    icon: BubbleChart,
-    component: Icons
-  },
-  {
-    path: "/notifications",
-    sidebarName: "Notifications",
-    navbarName: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage
-  },
-  {
-    path: "/upgrade-to-pro",
-    sidebarName: "Upgrade To PRO",
-    navbarName: "Upgrade To PRO",
-    icon: Unarchive,
-    component: UpgradeToPro
-  },
-  { redirect: true, path: "/", to: "/projetos", navbarName: "Redirect" }
+	{
+		path: "/inicio",
+		sidebarName: "Início",
+		navbarName: "Informações Gerais",
+		icon: Dashboard,
+		component: Start
+	},
+	{
+		path: "/demanda",
+		sidebarName: "Cadastrar Demanda",
+		navbarName: "Demanda",
+		icon: Person,
+		component: CreateDemand
+	},
+	{
+		path: "/table",
+		sidebarName: "Table List",
+		navbarName: "Table List",
+		icon: "content_paste",
+		component: TableList
+	},
+	{
+		path: "/typography",
+		sidebarName: "Typography",
+		navbarName: "Typography",
+		icon: LibraryBooks,
+		component: Typography
+	},
+	{
+		path: "/icons",
+		sidebarName: "Icons",
+		navbarName: "Icons",
+		icon: BubbleChart,
+		component: Icons
+	},
+	{
+		path: "/notifications",
+		sidebarName: "Notifications",
+		navbarName: "Notifications",
+		icon: Notifications,
+		component: NotificationsPage
+	},
+	{
+		path: "/upgrade-to-pro",
+		sidebarName: "Upgrade To PRO",
+		navbarName: "Upgrade To PRO",
+		icon: Unarchive,
+		component: UpgradeToPro
+	},
+	{ redirect: true, path: "/", to: "/inicio", navbarName: "Redirect" }
 ];
 
 export default dashboardRoutes;

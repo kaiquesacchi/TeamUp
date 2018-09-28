@@ -10,11 +10,13 @@ class Home extends Component {
 		<div className="center blur">
 			<h1>Team Up</h1>
 			<p className="text">
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-			Donec fermentum sodales orci sit amet tincidunt. 
+			Te ajudamos a construir
 			</p>
-			<Link to="/auth/sign-up" className="ButtonCentered">Começar</Link>
+			<p className="text">
+			Seu Sonho
+			</p>
 		</div>
+		<Link to="/auth/sign-up" className="ButtonCentered">Começar</Link>
 	</div>
 </div>
 

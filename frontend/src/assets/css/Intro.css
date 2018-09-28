@@ -1,3 +1,5 @@
+/*Background of the Intro Pages*/
+
 .Intro {
 	height: 100vh;
 	display: flex;
@@ -6,7 +8,6 @@
 
 .IntroBackground {
 	
-	/*background-color: #66DAC7;*/
 	width: 100vw;
 	background-image: url("../../static/ballpen-blur-close-up-461077.jpg");
 	background-attachment: fixed;
@@ -23,6 +24,8 @@
 	padding: 25px 40px;
 	overflow: auto;
 }
+
+/*Forms of the Sign-in and Sign-up pages*/
 
 .FormCenter {
 	margin-bottom: 100px;
@@ -132,6 +135,8 @@
     position: absolute;
     bottom: 20%;
     left: 42.75%;
+    opacity: 1;
+    text-align: center;
 }
 
 .center {
@@ -153,5 +158,5 @@
 }
 
 .text {
-	font-size: 5vh;
+	font-size: 8vh;
 }
