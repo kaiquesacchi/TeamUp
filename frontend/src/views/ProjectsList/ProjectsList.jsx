@@ -64,7 +64,7 @@ function ProjectsList(props) {
 								["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
 								["Mason Porter", "Chile", "Gloucester", "$78,615"]
 							]}
-							buttonLink={["/", "/projetos", "/demanda", "/a", "/demanda", "/"]}
+							buttonLink={["/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status"]}
 							buttonText={"Verificar status"}
 						/>
 					</CardBody>
