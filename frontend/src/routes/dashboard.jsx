@@ -11,8 +11,8 @@ import Unarchive from "@material-ui/icons/Unarchive";
 import Start from "views/Start/Start.jsx";
 import StatusProject from "views/StatusProject/StatusProject.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
+import ConcludeProject from "views/ConcludeProject/ConcludeProject.jsx";
 import ProjectsList from "views/ProjectsList/ProjectsList.jsx";
-import Typography from "views/Typography/Typography.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 
@@ -32,13 +32,6 @@ const dashboardRoutes = [
 		component: StatusProject
 	},
 	{
-		path: "/demanda",
-		sidebarName: "Cadastrar Demanda",
-		navbarName: "Demanda",
-		icon: Person,
-		component: CreateDemand
-	},
-	{
 		path: "/projetos",
 		sidebarName: "Lista de Projetos",
 		navbarName: "Lista de Projetos",
@@ -46,11 +39,18 @@ const dashboardRoutes = [
 		component: ProjectsList
 	},
 	{
-		path: "/typography",
-		sidebarName: "Typography",
-		navbarName: "Typography",
+		path: "/projeto/concluir",
+		sidebarName: "Finalizar",
+		navbarName: "Finalizar Projeto",
 		icon: LibraryBooks,
-		component: Typography
+		component: ConcludeProject
+	},
+	{
+		path: "/demanda",
+		sidebarName: "Cadastrar Demanda",
+		navbarName: "Demanda",
+		icon: Person,
+		component: CreateDemand
 	},
 	{
 		path: "/icons",
