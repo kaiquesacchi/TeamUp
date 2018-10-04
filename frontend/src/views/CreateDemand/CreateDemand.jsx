@@ -81,7 +81,7 @@ class CreateDemand extends Component {
           <GridItem xs={12}>
             <Card>
               <form onSubmit={this.handleSubmit}>
-                <CardHeader color="primary">
+                <CardHeader color="warning">
                   <h4 className={classes.cardTitleWhite}>Cadastrar Demanda</h4>
                   <p className={classes.cardCategoryWhite}>Complete os dados sobre sua necessidade</p>
                 </CardHeader>
@@ -164,7 +164,7 @@ class CreateDemand extends Component {
                   </GridContainer>
                 </CardBody>
                 <CardFooter>
-                  <Button color="primary" type="submit">Criar</Button>
+                  <Button color="warning" type="submit">Criar</Button>
                 </CardFooter>
                 {this.state.created &&
                   <div style={{padding:'20px', fontSize: '1.5rem'}}>
