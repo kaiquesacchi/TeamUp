@@ -74,7 +74,8 @@ class App extends React.Component {
 		return (
 
 		<div className={classes.wrapper}>
-		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+			<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+			<link href="../../assets/css/demo-documentation.css" rel="stylesheet" />
 			<Sidebar
 				routes={dashboardRoutes}
 				logoText={"Team Up"}
