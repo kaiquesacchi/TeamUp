@@ -154,15 +154,13 @@ class CreateProposal extends Component {
 								{this.state.selectedList && this.state.selectedList.length > 0 &&
 									<div>
 										<h3>Equipe escolhida</h3>
-										<CardBody>
-											<Table
-												tableHeaderColor="warning"
-												tableHead={["Nome", "Função", "Média por projeto", "Adicionar"]}
-												tableData={this.state.selectedList}
-												buttonAction={(key) => this.deselectPerson(key)}
-												buttonText={"Retirar"}
-											/>
-										</CardBody>
+										<Table
+											tableHeaderColor="warning"
+											tableHead={["Nome", "Função", "Média por projeto", "Adicionar"]}
+											tableData={this.state.selectedList}
+											buttonAction={(key) => this.deselectPerson(key)}
+											buttonText={"Retirar"}
+										/>
 									</div>
 								}
 								<h3>Profissionais disponíveis</h3>
