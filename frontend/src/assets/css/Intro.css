@@ -9,7 +9,7 @@
 .IntroBackground {
 	
 	width: 100vw;
-	background-image: url("../../static/ballpen-blur-close-up-461077.jpg");
+	background-image: url("../img/background-home.jpg");
 	background-attachment: fixed;
 	background-size: cover;
 }

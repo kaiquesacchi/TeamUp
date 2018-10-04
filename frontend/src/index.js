@@ -9,13 +9,15 @@ import "assets/css/material-dashboard-react.css?v=1.5.0";
 import indexRoutes from "routes/index.jsx";
 import Home from "views/Home/Home.js"
 import Authentication from "views/Authentication/Authentication.js"
-
+import CompleteSignUp from "views/Authentication/CompleteSignUp.js"
 
 ReactDOM.render(
 
 <BrowserRouter>
 	<Switch>
   		<Route exact path="/" component={Home}>
+		</Route>
+		<Route path="/auth/complete-sign-up" component={CompleteSignUp}>
 		</Route>
 		<Route path="/auth" component={Authentication}>
 		</Route>
