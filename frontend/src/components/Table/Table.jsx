@@ -12,7 +12,7 @@ import TableCell from "@material-ui/core/TableCell";
 import tableStyle from "assets/jss/material-dashboard-react/components/tableStyle.jsx";
 
 function CustomTable({ ...props }) {
-  const { classes, tableHead, tableData, tableHeaderColor, buttonLink, buttonText } = props;
+  const { classes, tableHead, tableData, tableHeaderColor, buttonLink, buttonText, buttonAction } = props;
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -47,12 +47,19 @@ function CustomTable({ ...props }) {
                     );
                   })}
                   {buttonLink && buttonLink[key] && (
-                    <TableCell clasName={classes.tableCell}>
+                    <TableCell className={classes.tableCell}>
                       <Link to={buttonLink[key]}>
                         <div>
                           {buttonText}
                         </div>
                       </Link>
+                    </TableCell>)
+                  }
+                  {buttonAction && (
+                    <TableCell className={classes.tableCell}>
+                      <div onClick={() => buttonAction(key)} style={{textDecoration: 'underline',cursor: 'pointer'}}>
+                        {buttonText}
+                      </div>
                     </TableCell>)
                   }
                 </TableRow>

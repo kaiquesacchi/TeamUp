@@ -13,7 +13,7 @@ import StatusProject from "views/StatusProject/StatusProject.jsx";
 import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import ConcludeProject from "views/ConcludeProject/ConcludeProject.jsx";
 import ProjectsList from "views/ProjectsList/ProjectsList.jsx";
-import Icons from "views/Icons/Icons.jsx";
+import CreateProposal from "views/CreateProposal/CreateProposal.jsx";
 import NotificationsPage from "views/Notifications/Notifications.jsx";
 
 const dashboardRoutes = [
@@ -53,11 +53,11 @@ const dashboardRoutes = [
 		component: CreateDemand
 	},
 	{
-		path: "/icons",
-		sidebarName: "Icons",
-		navbarName: "Icons",
+		path: "/proposta",
+		sidebarName: "Criar Proposta",
+		navbarName: "Criar Proposta",
 		icon: BubbleChart,
-		component: Icons
+		component: CreateProposal
 	},
 	{
 		path: "/notifications",
