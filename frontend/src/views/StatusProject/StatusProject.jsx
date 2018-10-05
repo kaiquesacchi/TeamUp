@@ -59,39 +59,31 @@ class StatusProject extends React.Component {
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="warning" stats icon>
-                <CardIcon color="warning">
-                  <Icon>content_copy</Icon>
+              <CardIcon color="warning">
+                  <DateRange />
                 </CardIcon>
-                <p className={classes.cardCategory}>Used Space</p>
+                <p className={classes.cardCategory}>Data prevista do término</p>
                 <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
+                  DD/MM/AAAA <small></small>
                 </h3>
               </CardHeader>
               <CardFooter stats>
-                <div className={classes.stats}>
-                  <Danger>
-                    <Warning />
-                  </Danger>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Get more space
-                  </a>
-                </div>
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Store />
                 </CardIcon>
-                <p className={classes.cardCategory}>Revenue</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
+                <p className={classes.cardCategory}>Gasto atual do projeto</p>
+                <h3 className={classes.cardTitle}>R$00,00</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <DateRange />
-                  Last 24 Hours
+                  <Store />
+                  Previsto de R$1000,00
                 </div>
               </CardFooter>
             </Card>
@@ -138,23 +130,20 @@ class StatusProject extends React.Component {
                 <ChartistGraph
                   className="ct-chart"
                   data={dailySalesChart.data}
-                  type="Line"
+                  type="Bar"
                   options={dailySalesChart.options}
                   listener={dailySalesChart.animation}
                 />
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Daily Sales</h4>
+                <h4 className={classes.cardTitle}>Gastos diários</h4>
                 <p className={classes.cardCategory}>
-                  <span className={classes.successText}>
-                    <ArrowUpward className={classes.upArrowCardCategory} /> 55%
-                  </span>{" "}
-                  increase in today sales.
+            
                 </p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                  <AccessTime /> updated 4 minutes ago
+                  <AccessTime /> Atualizado 4 min atrás
                 </div>
               </CardFooter>
             </Card>
@@ -164,11 +153,11 @@ class StatusProject extends React.Component {
               <CardHeader color="warning">
                 <ChartistGraph
                   className="ct-chart"
-                  data={emailsSubscriptionChart.data}
+                  data={dailySalesChart.data}
                   type="Bar"
                   options={emailsSubscriptionChart.options}
                   responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={emailsSubscriptionChart.animation}
+                  listener={completedTasksChart.animation}
                 />
               </CardHeader>
               <CardBody>
@@ -190,20 +179,19 @@ class StatusProject extends React.Component {
                 <ChartistGraph
                   className="ct-chart"
                   data={completedTasksChart.data}
-                  type="Line"
+                  type="Bar"
                   options={completedTasksChart.options}
                   listener={completedTasksChart.animation}
                 />
               </CardHeader>
               <CardBody>
-                <h4 className={classes.cardTitle}>Completed Tasks</h4>
+                <h4 className={classes.cardTitle}>Quantidade de tarefas realizadas</h4>
                 <p className={classes.cardCategory}>
-                  Last Campaign Performance
                 </p>
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
+                  <AccessTime /> Atualizado 4 min atrás
                 </div>
               </CardFooter>
             </Card>
@@ -254,20 +242,20 @@ class StatusProject extends React.Component {
           <GridItem xs={12} sm={12} md={6}>
             <Card>
               <CardHeader color="warning">
-                <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+                <h4 className={classes.cardTitleWhite}>Lista de empregados</h4>
                 <p className={classes.cardCategoryWhite}>
-                  New employees on 15th September, 2016
+                
                 </p>
               </CardHeader>
               <CardBody>
                 <Table
                   tableHeaderColor="warning"
-                  tableHead={["ID", "Name", "Salary", "Country"]}
+                  tableHead={["ID", "Nome", "Salário", "Àrea"]}
                   tableData={[
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"]
+                    ["1", "Mike Wazalski", "R$1536,738", "Marketing"],
+                    ["2", "Jessica Alba", "R$3223,789", "Programação"],
+                    ["3", "Roberto Freitas", "R$4256,142", "Engenharia de software"],
+                    ["4", "Bruce Wayne", "R$1838,735", "Relações humanas"]
                   ]}
                 />
               </CardBody>
