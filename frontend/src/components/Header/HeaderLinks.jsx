@@ -47,7 +47,7 @@ class HeaderLinks extends React.Component {
               className: classes.margin + " " + classes.search
             }}
             inputProps={{
-              placeholder: "Search",
+              placeholder: "Busca",
               inputProps: {
                 "aria-label": "Search"
               }
@@ -83,7 +83,7 @@ class HeaderLinks extends React.Component {
             className={classes.buttonLink}
           >
             <Notifications className={classes.icons} />
-            <span className={classes.notifications}>5</span>
+            <span className={classes.notifications}>3</span>
             <Hidden mdUp implementation="css">
               <p onClick={this.handleClick} className={classes.linkText}>
                 Notification
@@ -117,31 +117,19 @@ class HeaderLinks extends React.Component {
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        Mike John responded to your email
+                        Mike John respondeu seu e-mail
                       </MenuItem>
                       <MenuItem
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        You have 5 new tasks
+                        5 tarfeas foram realizadas
                       </MenuItem>
                       <MenuItem
                         onClick={this.handleClose}
                         className={classes.dropdownItem}
                       >
-                        You're now friend with Andrew
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Another Notification
-                      </MenuItem>
-                      <MenuItem
-                        onClick={this.handleClose}
-                        className={classes.dropdownItem}
-                      >
-                        Another One
+                        Mike se juntou à equipe
                       </MenuItem>
                     </MenuList>
                   </ClickAwayListener>

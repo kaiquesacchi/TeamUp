@@ -59,7 +59,7 @@ class StatusProject extends React.Component {
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="warning" stats icon>
-              <CardIcon color="warning">
+              <CardIcon color="info">
                   <DateRange />
                 </CardIcon>
                 <p className={classes.cardCategory}>Data prevista do término</p>
@@ -83,7 +83,7 @@ class StatusProject extends React.Component {
               <CardFooter stats>
                 <div className={classes.stats}>
                   <Store />
-                  Previsto de R$1000,00
+                  Previsto de R$15000,00
                 </div>
               </CardFooter>
             </Card>
@@ -91,42 +91,26 @@ class StatusProject extends React.Component {
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="danger" stats icon>
-                <CardIcon color="danger">
+                <CardIcon color="warning">
                   <Icon>info_outline</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
+                <p className={classes.cardCategory}>Problemas resolvidos</p>
                 <h3 className={classes.cardTitle}>75</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <LocalOffer />
-                  Tracked from Github
+                
+                 
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
-            <Card>
-              <CardHeader color="info" stats icon>
-                <CardIcon color="info">
-                  <Accessibility />
-                </CardIcon>
-                <p className={classes.cardCategory}>Followers</p>
-                <h3 className={classes.cardTitle}>+245</h3>
-              </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Update />
-                  Just Updated
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
+          
         </GridContainer>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
             <Card chart>
-              <CardHeader color="success">
+              <CardHeader color="primary">
                 <ChartistGraph
                   className="ct-chart"
                   data={dailySalesChart.data}
@@ -148,32 +132,8 @@ class StatusProject extends React.Component {
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <Card chart>
-              <CardHeader color="warning">
-                <ChartistGraph
-                  className="ct-chart"
-                  data={dailySalesChart.data}
-                  type="Bar"
-                  options={emailsSubscriptionChart.options}
-                  responsiveOptions={emailsSubscriptionChart.responsiveOptions}
-                  listener={completedTasksChart.animation}
-                />
-              </CardHeader>
-              <CardBody>
-                <h4 className={classes.cardTitle}>Email Subscriptions</h4>
-                <p className={classes.cardCategory}>
-                  Last Campaign Performance
-                </p>
-              </CardBody>
-              <CardFooter chart>
-                <div className={classes.stats}>
-                  <AccessTime /> campaign sent 2 days ago
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
+          
+          <GridItem xs={12} sm={12} md={6}>
             <Card chart>
               <CardHeader color="danger">
                 <ChartistGraph
@@ -200,39 +160,17 @@ class StatusProject extends React.Component {
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
             <CustomTabs
-              title="Tasks:"
+              title="Tarefas:"
               headerColor="primary"
               tabs={[
                 {
-                  tabName: "Bugs",
+                  tabName: "Geral",
                   tabIcon: BugReport,
                   tabContent: (
                     <Tasks
                       checkedIndexes={[0, 3]}
                       tasksIndexes={[0, 1, 2, 3]}
                       tasks={bugs}
-                    />
-                  )
-                },
-                {
-                  tabName: "Website",
-                  tabIcon: Code,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0]}
-                      tasksIndexes={[0, 1]}
-                      tasks={website}
-                    />
-                  )
-                },
-                {
-                  tabName: "Server",
-                  tabIcon: Cloud,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[1]}
-                      tasksIndexes={[0, 1, 2]}
-                      tasks={server}
                     />
                   )
                 }
