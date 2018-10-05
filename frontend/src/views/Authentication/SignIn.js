@@ -28,6 +28,7 @@ class SignIn extends Component {
 
 		console.log('The form was submitted with the following data:');
 		console.log(this.state);
+		this.props.history.push("/inicio")
 	}
 
 	render() {
