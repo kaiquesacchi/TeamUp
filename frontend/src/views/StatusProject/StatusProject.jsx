@@ -197,6 +197,11 @@ class StatusProject extends React.Component {
                   ]}
                 />
               </CardBody>
+              <CardFooter chart>
+                <div className={classes.stats}>
+                  <AccessTime /> Atualizado 2 dias atrás
+                </div>
+              </CardFooter>
             </Card>
           </GridItem>
         </GridContainer>

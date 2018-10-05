@@ -68,42 +68,40 @@ class ConcludeProject extends Component {
     return (
       <div>
         <GridContainer>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={5}>
             <Card>
               <CardHeader color="warning" stats icon>
-                <CardIcon color="warning">
-                  <Icon>content_copy</Icon>
+                <CardIcon color="info">
+                  <DateRange/>
                 </CardIcon>
-                <p className={classes.cardCategory}>Used Space</p>
+                <p className={classes.cardCategory}>Data de término</p>
                 <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
+                  DD/MM/AAAA <small></small>
                 </h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
                   <Danger>
-                    <Warning />
                   </Danger>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Get more space
                   </a>
                 </div>
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Store />
                 </CardIcon>
-                <p className={classes.cardCategory}>Revenue</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
+                <p className={classes.cardCategory}>Gasto do projeto</p>
+                <h3 className={classes.cardTitle}>R$20000,00</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <DateRange />
-                  Last 24 Hours
+                  <Store />
+                  Previsto de R$15000,00
                 </div>
               </CardFooter>
             </Card>
@@ -111,33 +109,14 @@ class ConcludeProject extends Component {
           <GridItem xs={12} sm={6} md={3}>
             <Card>
               <CardHeader color="danger" stats icon>
-                <CardIcon color="danger">
+                <CardIcon color="warning">
                   <Icon>info_outline</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
+                <p className={classes.cardCategory}>Problemas resolvidos</p>
                 <h3 className={classes.cardTitle}>75</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <LocalOffer />
-                  Tracked from Github
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
-            <Card>
-              <CardHeader color="info" stats icon>
-                <CardIcon color="info">
-                  <Accessibility />
-                </CardIcon>
-                <p className={classes.cardCategory}>Followers</p>
-                <h3 className={classes.cardTitle}>+245</h3>
-              </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Update />
-                  Just Updated
                 </div>
               </CardFooter>
             </Card>

@@ -14,7 +14,6 @@ import CreateDemand from "views/CreateDemand/CreateDemand.jsx";
 import ConcludeProject from "views/ConcludeProject/ConcludeProject.jsx";
 import ProjectsList from "views/ProjectsList/ProjectsList.jsx";
 import CreateProposal from "views/CreateProposal/CreateProposal.jsx";
-import NotificationsPage from "views/Notifications/Notifications.jsx";
 
 const dashboardRoutes = [
 	{
@@ -58,13 +57,6 @@ const dashboardRoutes = [
 		navbarName: "Criar Proposta",
 		icon: BubbleChart,
 		component: CreateProposal
-	},
-	{
-		path: "/notifications",
-		sidebarName: "Notifications",
-		navbarName: "Notifications",
-		icon: Notifications,
-		component: NotificationsPage
 	},
 	{ redirect: true, path: "/", to: "/inicio", navbarName: "Redirect" }
 ];
