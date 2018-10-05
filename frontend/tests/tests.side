@@ -2,7 +2,7 @@
   "id": "40e9cd2c-12cd-480d-8528-c21332495fb7",
   "version": "1.1",
   "name": "TeamUp",
-  "url": "http://localhost:3000/projetos",
+  "url": "http://localhost:3000/proposta",
   "tests": [{
     "id": "6ff637ef-089c-47fe-b005-322ae085ce6b",
     "name": "Acessa projeto através da lista",
@@ -517,147 +517,6 @@
       "value": "Demanda criada!"
     }]
   }, {
-    "id": "5d65b768-67d8-4533-9140-e9466e07b955",
-    "name": "Criar proposta",
-    "commands": [{
-      "id": "2cdff66a-4867-41ed-ba95-f0d59a477d35",
-      "comment": "",
-      "command": "open",
-      "target": "http://localhost:3000/proposta",
-      "targets": [],
-      "value": ""
-    }, {
-      "id": "391caaab-ac03-4f56-8b34-5d30d8f02636",
-      "comment": "",
-      "command": "click",
-      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
-      "targets": [
-        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
-        ["xpath=//form/div[2]/button/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "c0aa60df-a1d6-4e23-91e9-95c47d82e21a",
-      "comment": "",
-      "command": "mouseOut",
-      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
-      "targets": [
-        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
-        ["xpath=//form/div[2]/button/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "3f6ee672-ac0f-4c5d-8c92-79a692888032",
-      "comment": "",
-      "command": "type",
-      "target": "id=proposal",
-      "targets": [
-        ["id=proposal", "id"],
-        ["name=proposal", "name"],
-        ["css=#proposal", "css"],
-        ["css=#proposal", "css:finder"],
-        ["xpath=//textarea[@id='proposal']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div/div/div/div/textarea", "xpath:idRelative"],
-        ["xpath=//textarea", "xpath:position"]
-      ],
-      "value": "Proposta para fazer os funcionalidades x, y e z para o projeto."
-    }, {
-      "id": "217f146e-0a14-4d75-8a39-a4d16043f157",
-      "comment": "",
-      "command": "click",
-      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
-      "targets": [
-        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
-        ["xpath=//form/div[2]/button/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "e24f5555-1760-4d1a-8528-bf6dfc0fe94b",
-      "comment": "",
-      "command": "type",
-      "target": "id=value",
-      "targets": [
-        ["id=value", "id"],
-        ["name=value", "name"],
-        ["css=#value", "css"],
-        ["css=#value", "css:finder"],
-        ["xpath=//input[@id='value']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[2]/div/div/div/input", "xpath:idRelative"],
-        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
-      ],
-      "value": "1000.00"
-    }, {
-      "id": "daf572c1-7a32-4177-9f08-d1e90a548093",
-      "comment": "",
-      "command": "click",
-      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
-      "targets": [
-        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
-        ["xpath=//form/div[2]/button/span", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "0c257b19-5a60-40f3-a8b0-69d43efd946c",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=.CardBody-cardBody-389 > div:nth-child(3)",
-      "targets": [
-        ["css=.CardBody-cardBody-389 > div:nth-child(3)", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[3]", "xpath:idRelative"],
-        ["xpath=//form/div/div[3]", "xpath:position"]
-      ],
-      "value": "É preciso adicionar pessoa(s) à equipe!"
-    }, {
-      "id": "9137ab0b-cf54-4a96-b7d6-ca44913a647a",
-      "comment": "",
-      "command": "click",
-      "target": "css=.MuiTableRow-root-419:nth-child(1) div",
-      "targets": [
-        ["css=.MuiTableRow-root-419:nth-child(1) div", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[4]/table/tbody/tr/td[4]/div", "xpath:idRelative"],
-        ["xpath=//td[4]/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "2e4bf397-d2a8-4368-8f15-e997c36f2ec2",
-      "comment": "",
-      "command": "click",
-      "target": "css=.CustomTable-tableResponsive-416:nth-child(5) .MuiTableRow-root-419:nth-child(1) div",
-      "targets": [
-        ["css=.CustomTable-tableResponsive-416:nth-child(5) .MuiTableRow-root-419:nth-child(1) div", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[4]/table/tbody/tr/td[4]/div", "xpath:idRelative"],
-        ["xpath=//div[4]/table/tbody/tr/td[4]/div", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "94fd7925-deb2-49a0-ae42-8958300d02ac",
-      "comment": "",
-      "command": "click",
-      "target": "css=.RegularButton-warning-159",
-      "targets": [
-        ["css=.RegularButton-warning-159", "css:finder"],
-        ["xpath=//button[@type='submit']", "xpath:attributes"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button", "xpath:idRelative"],
-        ["xpath=//form/div[2]/button", "xpath:position"]
-      ],
-      "value": ""
-    }, {
-      "id": "75f47c64-e04d-447f-b60a-3f62e586142f",
-      "comment": "",
-      "command": "assertText",
-      "target": "css=form > div:nth-child(3)",
-      "targets": [
-        ["css=form > div:nth-child(3)", "css:finder"],
-        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[3]", "xpath:idRelative"],
-        ["xpath=//form/div[3]", "xpath:position"]
-      ],
-      "value": "Proposta enviada!"
-    }]
-  }, {
     "id": "234e4895-8781-44d0-b129-39830bb7df14",
     "name": "Acompanha projeto",
     "commands": [{
@@ -799,6 +658,199 @@
         ["xpath=//tr[2]/td[3]/button[2]", "xpath:position"]
       ],
       "value": ""
+    }]
+  }, {
+    "id": "6b49876a-d30f-4f5a-ab35-b90db19870a8",
+    "name": "Criar proposta",
+    "commands": [{
+      "id": "1b2922bd-aa99-40b8-b109-8a9caf12d3f6",
+      "comment": "",
+      "command": "open",
+      "target": "http://localhost:3000/proposta",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "3d83d07e-933c-4617-83cd-9681f40207f2",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1195x669",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c5b92db9-6676-4c49-9896-6aab7be42deb",
+      "comment": "",
+      "command": "click",
+      "target": "id=proposal",
+      "targets": [
+        ["id=proposal", "id"],
+        ["name=proposal", "name"],
+        ["css=#proposal", "css"],
+        ["css=#proposal", "css:finder"],
+        ["xpath=//textarea[@id='proposal']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1c0a8422-e6cb-4161-aaa8-194e2b222e0d",
+      "comment": "",
+      "command": "type",
+      "target": "id=proposal",
+      "targets": [
+        ["id=proposal", "id"],
+        ["name=proposal", "name"],
+        ["css=#proposal", "css"],
+        ["css=#proposal", "css:finder"],
+        ["xpath=//textarea[@id='proposal']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div/div/div/div/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "a"
+    }, {
+      "id": "f20eb344-7072-4df6-8e99-7ab542fa632a",
+      "comment": "",
+      "command": "click",
+      "target": "id=value",
+      "targets": [
+        ["id=value", "id"],
+        ["name=value", "name"],
+        ["css=#value", "css"],
+        ["css=#value", "css:finder"],
+        ["xpath=//input[@id='value']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5b54c425-936b-47e1-8ae4-8719d91cf1e4",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
+      "targets": [
+        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
+        ["xpath=//form/div[2]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "34c86cbd-6b92-46ee-b9f6-eafd5a84dbdf",
+      "comment": "",
+      "command": "type",
+      "target": "id=value",
+      "targets": [
+        ["id=value", "id"],
+        ["name=value", "name"],
+        ["css=#value", "css"],
+        ["css=#value", "css:finder"],
+        ["xpath=//input[@id='value']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "-1"
+    }, {
+      "id": "a68c52fa-d93f-4fd7-8abe-f0b41d3c623e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
+      "targets": [
+        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
+        ["xpath=//form/div[2]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8510b5d9-82cb-4378-8ecd-8d9a1c3c3fea",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
+      "targets": [
+        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
+        ["xpath=//form/div[2]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "67591abe-3501-4fcb-bc48-413291c9f08f",
+      "comment": "",
+      "command": "type",
+      "target": "id=value",
+      "targets": [
+        ["id=value", "id"],
+        ["name=value", "name"],
+        ["css=#value", "css"],
+        ["css=#value", "css:finder"],
+        ["xpath=//input[@id='value']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[2]/div/div/div/input", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div/div/input", "xpath:position"]
+      ],
+      "value": "1"
+    }, {
+      "id": "859393bf-4090-4db3-9e30-722b6b50c54d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.RegularButton-warning-159",
+      "targets": [
+        ["css=.RegularButton-warning-159", "css:finder"],
+        ["xpath=//button[@type='submit']", "xpath:attributes"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button", "xpath:idRelative"],
+        ["xpath=//form/div[2]/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "768e2e43-09d4-4f52-a866-4f522eb46106",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=.CardBody-cardBody-381 > div:nth-child(3)",
+      "targets": [
+        ["css=.CardBody-cardBody-381 > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[3]", "xpath:idRelative"],
+        ["xpath=//form/div/div[3]", "xpath:position"]
+      ],
+      "value": "É preciso adicionar pessoa(s) à equipe!"
+    }, {
+      "id": "60340512-edfb-48b4-9891-59009a5ace29",
+      "comment": "",
+      "command": "click",
+      "target": "css=.MuiTableRow-root-411:nth-child(1) div",
+      "targets": [
+        ["css=.MuiTableRow-root-411:nth-child(1) div", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[4]/table/tbody/tr/td[4]/div", "xpath:idRelative"],
+        ["xpath=//td[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8fdfc97f-a298-4022-82d2-7b7863a3a8b5",
+      "comment": "",
+      "command": "click",
+      "target": "css=.CustomTable-tableResponsive-408:nth-child(5) .MuiTableRow-root-411:nth-child(1) div",
+      "targets": [
+        ["css=.CustomTable-tableResponsive-408:nth-child(5) .MuiTableRow-root-411:nth-child(1) div", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div/div[4]/table/tbody/tr/td[4]/div", "xpath:idRelative"],
+        ["xpath=//div[4]/table/tbody/tr/td[4]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "87f84751-de95-4ab0-9297-83e2593b8f82",
+      "comment": "",
+      "command": "click",
+      "target": "css=.RegularButton-warning-159 > .MuiButton-label-171",
+      "targets": [
+        ["css=.RegularButton-warning-159 > .MuiButton-label-171", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[2]/button/span", "xpath:idRelative"],
+        ["xpath=//form/div[2]/button/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8c8b5ae7-833b-4814-9160-4a1c1d807723",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=form > div:nth-child(3)",
+      "targets": [
+        ["css=form > div:nth-child(3)", "css:finder"],
+        ["xpath=//div[@id='root']/div/div[2]/div/div/div/div/div/form/div[3]", "xpath:idRelative"],
+        ["xpath=//form/div[3]", "xpath:position"]
+      ],
+      "value": "Proposta enviada!"
     }]
   }],
   "suites": [{
