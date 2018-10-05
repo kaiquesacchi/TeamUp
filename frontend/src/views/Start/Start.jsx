@@ -42,27 +42,24 @@ import {
 } from "variables/charts.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-
-
-
-
-const images = [
-	{
-		color: '#2bb551',
-		title: 'Crie um Projeto',
-		width: '50%',
-	},
-	{
-		color: '#fc9a00',
-		title: 'Acompanhe seus Projetos',
-		width: '50%',
-	},
-];
+import ImageButtons from 'components/CustomButtons/ImageButtons.js'
 
 
 class VerifyProjects extends React.Component {
 	state = {
-		value: 0
+		value: 0,
+		images: [
+			{
+				color: '#2bb551',
+				title: 'Crie um Projeto',
+				width: '50%',
+			},
+			{
+				color: '#fc9a00',
+				title: 'Acompanhe seus Projetos',
+				width: '50%',
+			},
+		]
 	};
 	handleChange = (event, value) => {
 		this.setState({ value });
@@ -79,40 +76,7 @@ class VerifyProjects extends React.Component {
 
 	<GridContainer>
 		<GridItem xs={12} sm={12} md={12}>
-			<div className={classes.root}>
-				{images.map(image => (
-					<ButtonBase
-						focusRipple
-						key={image.title}
-						className={classes.image}
-						focusVisibleClassName={classes.focusVisible}
-						style={{
-							width: image.width,
-							backgroundColor: `${image.color}`,
-							padding: '20vh',
-						}}
-					>
-						<span
-							className={classes.imageSrc}
-							style={{
-								backgroundColor: `${image.color}`
-							}}
-						/>
-						<span className={classes.imageBackdrop} />
-						<span className={classes.imageButton}>
-						<Typography
-							component="span"
-							variant="subheading"
-							color="inherit"
-							className={classes.imageTitle}
-						>
-							{image.title}
-							<span className={classes.imageMarked} />
-						</Typography>
-						</span>
-					</ButtonBase>
-				))}
-			</div>
+			<ImageButtons images={this.state.images}/>
 		</GridItem>
 	</GridContainer>
 

@@ -92,7 +92,8 @@ function ButtonBases(props) {
 					focusVisibleClassName={classes.focusVisible}
 					style={{
 						width: image.width,
-						backgroundImage: `url(${image.url})`
+						backgroundImage: `url(${image.url})`,
+						backgroundColor: image.color
 					}}
 					onClick={() => { image.onClick() }}
 				>
