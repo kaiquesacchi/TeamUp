@@ -56,7 +56,7 @@ class StatusProject extends React.Component {
     return (
       <div>
         <GridContainer>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
               <CardHeader color="warning" stats icon>
               <CardIcon color="info">
@@ -88,7 +88,7 @@ class StatusProject extends React.Component {
               </CardFooter>
             </Card>
           </GridItem>
-          <GridItem xs={12} sm={6} md={3}>
+          <GridItem xs={12} sm={6} md={4}>
             <Card>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="warning">
@@ -108,7 +108,7 @@ class StatusProject extends React.Component {
           
         </GridContainer>
         <GridContainer>
-          <GridItem xs={12} sm={12} md={4}>
+          <GridItem xs={12} sm={12} md={6}>
             <Card chart>
               <CardHeader color="primary">
                 <ChartistGraph
