@@ -16,6 +16,8 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
+const API_URL = process.env.API_URL || 'http://localhost:5000';
+
 class CreateProposal extends Component {
 	constructor() {
 		super();
@@ -24,20 +26,26 @@ class CreateProposal extends Component {
 			proposal: '',
 			value: '',
 			selectedList: [],
-			fullList: [
-				["Dakota Rice", "Programador", "R$1000,00"],
-				["Minerva Hooper", "Tester", "R$800,00"],
-				["Sage Rodriguez", "P.O.", "R$1200,00"],
-				["Philip Chaney", "Programador front end", "R$1000,00"],
-				["Doris Greene", "Designer", "R$700,00"],
-				["Mason Porter", "Cientista de dados", "R$900,00"]
-			],
+			fullList: [],
 			created: false,
 			error: false,
 		};
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	async componentDidMount(){
+		const result = await fetch(API_URL + '/proposta', {
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
+		const resultJSON = await result.json();
+		this.setState({
+			fullList: resultJSON.professionals,
+		});
 	}
 
 	selectPerson(index) {
@@ -72,22 +80,33 @@ class CreateProposal extends Component {
 		});
 	}
 
-	handleSubmit(e) {
+	async handleSubmit(e) {
 		e.preventDefault();
 		if (this.state.selectedList.length === 0) {
 			this.setState({error: true});
 		} else {
-			console.log('The form was submitted with the following data:');
-			console.log(this.state);
-			const fullList = this.state.fullList.concat(this.state.selectedList);
-			this.setState({
-				proposal: '',
-				value: '',
-				selectedList: [],
-				fullList,
-				created: true,
-				error: false,
+			const result = await fetch(API_URL + '/proposta', {
+				method: 'POST',
+				body: JSON.stringify(this.state),
+				headers: {
+					'content-type': 'application/json',
+				},
 			});
+			const resultJSON = await result.json();
+			console.log(resultJSON);
+			if (resultJSON.erro) {
+				this.error = true;
+			  } else {
+				const fullList = this.state.fullList.concat(this.state.selectedList);
+				this.setState({
+					proposal: '',
+					value: '',
+					selectedList: [],
+					fullList,
+					created: true,
+					error: false,
+				});
+			  }
 		}
 	}
 
