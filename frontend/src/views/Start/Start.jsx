@@ -60,6 +60,7 @@ class Start extends React.Component {
 				value: 0,
 				last_update: 'Desatualizado'
 			},
+			graph: emailsSubscriptionChart,
 			value: 0,
 			images: [
 				{
@@ -84,10 +85,18 @@ class Start extends React.Component {
 			},
 		});
 		const resultJSON = await result.json();
-		this.setState({
+		this.setState(prevState =>({
 			earnings: resultJSON.earnings,
-			employees: resultJSON.employees
-		});
+			employees: resultJSON.employees,
+			graph: {
+				...prevState.graph,
+				data: {
+					...prevState.graph.data,
+					series: resultJSON.graph_values
+				}
+			}
+		}))
+		console.log(this.state.graph)
 	}
 
 	handleChange = (event, value) => {
@@ -152,7 +161,7 @@ class Start extends React.Component {
 				<CardHeader color="warning">
 					<ChartistGraph
 						className="ct-chart"
-						data={emailsSubscriptionChart.data}
+						data={this.state.graph.data}
 						type="Bar"
 						options={emailsSubscriptionChart.options}
 						responsiveOptions={emailsSubscriptionChart.responsiveOptions}

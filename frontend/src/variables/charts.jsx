@@ -85,7 +85,7 @@ const emailsSubscriptionChart = {
       "Nov",
       "Dec"
     ],
-    series: [[542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]]
+    series: [[]]
   },
   options: {
     axisX: {
