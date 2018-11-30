@@ -7,6 +7,7 @@ from controllers.start import Start
 from controllers.projects_list import ProjectsList
 from controllers.conclude_project import ConcludeProject
 from controllers.create_demand import CreateDemand
+from controllers.status_project import StatusProject
 
 app = Flask(__name__)
 api = Api(app)
@@ -18,6 +19,7 @@ api.add_resource(Start, '/start')
 api.add_resource(ProjectsList, '/projetos')
 api.add_resource(ConcludeProject, '/projeto/concluir')
 api.add_resource(CreateDemand, '/demanda')
+api.add_resource(StatusProject, '/projeto/status')
 
 if __name__ == '__main__':
     app.run(debug=True)
