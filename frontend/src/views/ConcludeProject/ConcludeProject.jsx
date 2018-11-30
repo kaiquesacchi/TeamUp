@@ -27,6 +27,8 @@ import avatar from "assets/img/faces/marc.jpg";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
+const API_URL = process.env.API_URL || 'http://localhost:5000';
+
 class ConcludeProject extends Component {
   constructor() {
     super();
@@ -35,10 +37,30 @@ class ConcludeProject extends Component {
       nps: '',
       comment: '',
       created: false,
+      endDate: 'DD/MM/AAAA',
+      spending: '',
+      solvedProblems: '',
+      foreseen: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  async componentDidMount(){
+    const result = await fetch(API_URL + '/projeto/concluir', {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    const resultJSON = await result.json();
+    this.setState({
+      endDate: resultJSON.endDate,
+      spending: resultJSON.spending,
+      solvedProblems: resultJSON.solvedProblems,
+      foreseen: resultJSON.foreseen,
+    });
   }
 
   handleChange(e) {
@@ -51,11 +73,16 @@ class ConcludeProject extends Component {
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-
-    console.log('The form was submitted with the following data:');
-    console.log(this.state);
+    const result = await fetch(API_URL + '/projeto/concluir', {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    const resultJSON = await result.json();
     this.setState({
       nps: '',
       comment: '',
@@ -76,7 +103,7 @@ class ConcludeProject extends Component {
                 </CardIcon>
                 <p className={classes.cardCategory}>Data de término</p>
                 <h3 className={classes.cardTitle}>
-                  DD/MM/AAAA <small></small>
+                  {this.state.endDate} <small></small>
                 </h3>
               </CardHeader>
               <CardFooter stats>
@@ -96,12 +123,12 @@ class ConcludeProject extends Component {
                   <Store />
                 </CardIcon>
                 <p className={classes.cardCategory}>Gasto do projeto</p>
-                <h3 className={classes.cardTitle}>R$20000,00</h3>
+                <h3 className={classes.cardTitle}>R${this.state.spending}</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
                   <Store />
-                  Previsto de R$15000,00
+                  Previsto de R${this.state.foreseen}
                 </div>
               </CardFooter>
             </Card>
@@ -113,7 +140,7 @@ class ConcludeProject extends Component {
                   <Icon>info_outline</Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Problemas resolvidos</p>
-                <h3 className={classes.cardTitle}>75</h3>
+                <h3 className={classes.cardTitle}>{this.state.solvedProblems}</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>

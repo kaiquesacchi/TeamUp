@@ -93,7 +93,6 @@ class CreateProposal extends Component {
 				},
 			});
 			const resultJSON = await result.json();
-			console.log(resultJSON);
 			if (resultJSON.erro) {
 				this.error = true;
 			  } else {

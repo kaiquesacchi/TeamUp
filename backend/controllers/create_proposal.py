@@ -20,10 +20,11 @@ class CreateProposal(Resource):
 
     def post(self):
         requestData = request.get_json()
-        prop = {'proposal': requestData.get('proposal'),
+        prop = {
+                'proposal': requestData.get('proposal'),
                 'value': requestData.get('value'),
                 'selectedList': requestData.get('selectedList')
-                }
+            }
         self.propostas.append(prop)
         print(self.propostas)
         return {'proposta': prop}
