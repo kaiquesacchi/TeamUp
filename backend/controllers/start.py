@@ -5,11 +5,11 @@ class Start(Resource):
 
     earnings = {
         'value': 12520,
-        'last_update': '3 dias atrás'
+        'last_update': '3 dias atras'
     }
     employees = {
         'value': 15,
-        'last_update': 'Uma semana atrás'
+        'last_update': 'Uma semana atras'
     }
     graph_values = [[542, 443, 320, 780, 553, 453,
                      326, 434, 568, 610, 756, 895]]

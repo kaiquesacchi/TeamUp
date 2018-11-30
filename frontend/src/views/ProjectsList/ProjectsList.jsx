@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // @material-ui/core components
 import { withRouter } from 'react-router';
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -9,6 +9,8 @@ import Table from "components/Table/Table.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+
+const API_URL = process.env.API_URL || 'http://localhost:5000';
 
 const styles = {
 	cardCategoryWhite: {
@@ -40,38 +42,53 @@ const styles = {
 	}
 };
 
-function ProjectsList(props) {
-	const { classes } = props;
-	return (
-		<GridContainer>
-			<GridItem xs={12} sm={12} md={12}>
-				<Card>
-					<CardHeader color="primary">
-						<h4 className={classes.cardTitleWhite}>Meus Projetos</h4>
-						<p className={classes.cardCategoryWhite}>
-							Aqui está a lista dos seus projetos existentes
-						</p>
-					</CardHeader>
-					<CardBody>
-						<Table
-							tableHeaderColor="primary"
-							tableHead={["Nome", "Tipo", "Status", "Preço", "Acompanhar"]}
-							tableData={[
-								["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-								["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-								["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-								["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-								["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-								["Mason Porter", "Chile", "Gloucester", "$78,615"]
-							]}
-							buttonLink={["/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status"]}
-							buttonText={"Verificar status"}
-						/>
-					</CardBody>
-				</Card>
-			</GridItem>
-		</GridContainer>
-	);
-}
+class ProjectsList extends Component {
+	constructor() {
+		super();
 
+		this.state = {
+			projetos: [],
+		}
+	}
+
+	async componentDidMount() {
+		const result = await fetch(API_URL + '/projetos', {
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
+		const resultJSON = await result.json();
+		this.setState({
+			projetos: resultJSON.projetos,
+		});
+	}
+
+	render() {
+		const { classes } = this.props;
+		return (
+			<GridContainer>
+				<GridItem xs={12} sm={12} md={12}>
+					<Card>
+						<CardHeader color="primary">
+							<h4 className={classes.cardTitleWhite}>Meus Projetos</h4>
+							<p className={classes.cardCategoryWhite}>
+								Aqui está a lista dos seus projetos existentes
+							</p>
+						</CardHeader>
+						<CardBody>
+							<Table
+								tableHeaderColor="primary"
+								tableHead={["Nome", "Tipo", "Status", "Preço", "Acompanhar"]}
+								tableData={this.state.projetos}
+								buttonLink={["/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status"]}
+								buttonText={"Verificar status"}
+							/>
+						</CardBody>
+					</Card>
+				</GridItem>
+			</GridContainer>
+		);
+	}
+}
 export default withStyles(styles)(ProjectsList);
