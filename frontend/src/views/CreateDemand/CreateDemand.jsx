@@ -14,6 +14,8 @@ import CardFooter from "components/Card/CardFooter.jsx";
 
 import avatar from "assets/img/faces/marc.jpg";
 
+const API_URL = process.env.API_URL || 'http://localhost:5000';
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -59,11 +61,16 @@ class CreateDemand extends Component {
     });
   }
 
-  handleSubmit(e) {
+  async handleSubmit(e) {
     e.preventDefault();
-
-    console.log('The form was submitted with the following data:');
-    console.log(this.state);
+    const result = await fetch(API_URL + '/demanda', {
+      method: 'POST',
+      body: JSON.stringify(this.state),
+      headers: {
+        'content-type': 'application/json',
+      },
+    });
+    const resultJSON = await result.json();
     this.setState({
       name: '',
       description: '',
