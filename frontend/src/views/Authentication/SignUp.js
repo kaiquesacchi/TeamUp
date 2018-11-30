@@ -59,7 +59,7 @@ class SignUp extends Component {
 		</div>
 
 		<div className="FormField">
-			<button className="FormField__Button mr-20">Criar Conta</button> <Link to="/sign-in" className="FormField__Link">Já sou cadastrado</Link>
+			<button className="FormField__Button mr-20">Criar Conta</button> <Link to="/auth/sign-in" className="FormField__Link">Já sou cadastrado</Link>
 		</div>
 	</form>
 </div>
