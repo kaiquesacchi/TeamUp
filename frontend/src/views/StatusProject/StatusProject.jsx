@@ -43,6 +43,7 @@ class StatusProject extends Component {
       deliveries: {
         labels: ["S", "T", "Q", "Q", "S", "S", "D"],
         series: [],
+        last_update: '',
       },
       doneTasks: {
         labels: [
@@ -50,6 +51,7 @@ class StatusProject extends Component {
           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
         ],
         series: [],
+        last_update: '',
       },
       tasks: [],
     }
@@ -71,11 +73,13 @@ class StatusProject extends Component {
 			tasks: resultJSON.tasks,
 			deliveries: {
 				...prevState.deliveries,
-				series: resultJSON.deliveries
+        series: resultJSON.deliveries.value,
+        last_update: resultJSON.deliveries.last_update,
       },
       doneTasks: {
         ...prevState.doneTasks,
-        series: resultJSON.doneTasks
+        series: resultJSON.doneTasks.value,
+        last_update: resultJSON.doneTasks.last_update,
       }
 		}));
 	}
@@ -156,7 +160,7 @@ class StatusProject extends Component {
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                  <AccessTime /> Atualizado 4 min atrás
+                  <AccessTime /> Atualizado {this.state.doneTasks.last_update}
                 </div>
               </CardFooter>
             </Card>
@@ -180,7 +184,7 @@ class StatusProject extends Component {
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                  <AccessTime /> Atualizado 4 min atrás
+                  <AccessTime /> Atualizado {this.state.deliveries.last_update}
                 </div>
               </CardFooter>
             </Card>
