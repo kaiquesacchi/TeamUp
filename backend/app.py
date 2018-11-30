@@ -9,6 +9,7 @@ from controllers.conclude_project import ConcludeProject
 from controllers.create_demand import CreateDemand
 from controllers.status_project import StatusProject
 from controllers.login import Login
+from controllers.create_account import CreateAccount
 
 app = Flask(__name__)
 api = Api(app)
@@ -22,6 +23,7 @@ api.add_resource(ConcludeProject, '/projeto/concluir')
 api.add_resource(CreateDemand, '/demanda')
 api.add_resource(StatusProject, '/projeto/status')
 api.add_resource(Login, '/login')
+api.add_resource(CreateAccount, '/conta/criar')
 
 if __name__ == '__main__':
     app.run(debug=True)
