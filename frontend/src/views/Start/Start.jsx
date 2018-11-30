@@ -45,22 +45,51 @@ import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardS
 import ImageButtons from 'components/CustomButtons/ImageButtons.js'
 
 
-class VerifyProjects extends React.Component {
-	state = {
-		value: 0,
-		images: [
-			{
-				color: '#2bb551',
-				title: 'Crie um Projeto',
-				width: '50%',
+const API_URL = process.env.API_URL || 'http://localhost:5000';
+
+
+class Start extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			earnings: {
+				value: 0,
+				last_update: 'Desatualizado'
 			},
-			{
-				color: '#fc9a00',
-				title: 'Acompanhe seus Projetos',
-				width: '50%',
+			employees: {
+				value: 0,
+				last_update: 'Desatualizado'
 			},
-		]
-	};
+			value: 0,
+			images: [
+				{
+					color: '#2bb551',
+					title: 'Crie um Projeto',
+					width: '50%',
+				},
+				{
+					color: '#fc9a00',
+					title: 'Acompanhe seus Projetos',
+					width: '50%',
+				},
+			]
+		};
+	}
+
+	async componentDidMount(){
+		const result = await fetch(API_URL + '/start', {
+			method: 'GET',
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
+		const resultJSON = await result.json();
+		this.setState({
+			earnings: resultJSON.earnings,
+			employees: resultJSON.employees
+		});
+	}
+
 	handleChange = (event, value) => {
 		this.setState({ value });
 	};
@@ -73,13 +102,11 @@ class VerifyProjects extends React.Component {
 		return (
 <div>
 
-
 	<GridContainer>
 		<GridItem xs={12} sm={12} md={12}>
 			<ImageButtons images={this.state.images}/>
 		</GridItem>
 	</GridContainer>
-
 
 	<GridContainer>
 		<GridItem xs={12} sm={6} md={3}>
@@ -89,12 +116,12 @@ class VerifyProjects extends React.Component {
 					<Store />
 					</CardIcon>
 					<p className={classes.cardCategory}>Lucro</p>
-					<h3 className={classes.cardTitle}>R$12.245</h3>
+					<h3 className={classes.cardTitle}>R${this.state.earnings.value}</h3>
 				</CardHeader>
 					<CardFooter stats>
 					<div className={classes.stats}>
 						<DateRange />
-						Últimos 3 Meses
+						{this.state.earnings.last_update}
 					</div>
 				</CardFooter>
 			</Card>
@@ -107,18 +134,17 @@ class VerifyProjects extends React.Component {
 					<Accessibility />
 					</CardIcon>
 					<p className={classes.cardCategory}>Funcionários</p>
-					<h3 className={classes.cardTitle}>15</h3>
+					<h3 className={classes.cardTitle}>{this.state.employees.value}</h3>
 				</CardHeader>
 				<CardFooter stats>
 					<div className={classes.stats}>
 						<Update />
-						Atualizado Agora
+						{this.state.employees.last_update}
 					</div>
 				</CardFooter>
 			</Card>
 		</GridItem>
 	</GridContainer>
-
 
 	<GridContainer>
 		<GridItem xs={12} sm={12} md={6}>
@@ -183,8 +209,8 @@ class VerifyProjects extends React.Component {
 	}
 }
 
-VerifyProjects.propTypes = {
+Start.propTypes = {
 	classes: PropTypes.object.isRequired
 };
 
-export default withStyles(dashboardStyle)(VerifyProjects);
+export default withStyles(dashboardStyle)(Start);
