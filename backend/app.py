@@ -16,7 +16,8 @@ app = Flask(__name__)
 api = Api(app)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:@localhost/teamup'
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:@localhost/teamup'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database'
 db = SQLAlchemy(app)
 
 api.add_resource(CreateProposal, '/proposta')
