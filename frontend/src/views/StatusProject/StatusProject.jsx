@@ -54,6 +54,10 @@ class StatusProject extends Component {
         last_update: '',
       },
       tasks: [],
+      employees: {
+        value: [],
+        last_update: '',
+      }
     }
   }
 
@@ -80,7 +84,8 @@ class StatusProject extends Component {
         ...prevState.doneTasks,
         series: resultJSON.doneTasks.value,
         last_update: resultJSON.doneTasks.last_update,
-      }
+      },
+      employees: resultJSON.employees,
 		}));
 	}
 
@@ -221,18 +226,13 @@ class StatusProject extends Component {
               <CardBody>
                 <Table
                   tableHeaderColor="warning"
-                  tableHead={["ID", "Nome", "Salário", "Àrea"]}
-                  tableData={[
-                    ["1", "Mike Wazalski", "R$1536,738", "Marketing"],
-                    ["2", "Jessica Alba", "R$3223,789", "Programação"],
-                    ["3", "Roberto Freitas", "R$4256,142", "Engenharia de software"],
-                    ["4", "Bruce Wayne", "R$1838,735", "Relações humanas"]
-                  ]}
+                  tableHead={["Nome", "Salário", "Àrea"]}
+                  tableData={this.state.employees.value}
                 />
               </CardBody>
               <CardFooter chart>
                 <div className={classes.stats}>
-                  <AccessTime /> Atualizado 2 dias atrás
+                  <AccessTime /> Atualizado {this.state.employees.last_update}
                 </div>
               </CardFooter>
             </Card>

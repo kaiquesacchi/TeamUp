@@ -67,7 +67,8 @@ class Start extends React.Component {
 					title: 'Acompanhe seus Projetos',
 					width: '50%',
 				},
-			]
+			],
+			tasks: [],
 		};
 	}
 
@@ -88,7 +89,8 @@ class Start extends React.Component {
 					...prevState.graph.data,
 					series: resultJSON.graph_values
 				}
-			}
+			},
+			tasks: resultJSON.tasks,
 		}))
 		console.log(this.state.graph)
 	}
@@ -178,30 +180,19 @@ class Start extends React.Component {
 	
 	<GridItem xs={12} sm={12} md={6}>
 		<CustomTabs
-			title="Geral:"
+			title="Tarefas:"
 			headerColor="primary"
 			tabs={[
 			{
-				tabName: "Bugs",
+				tabName: "Geral",
 				tabIcon: BugReport,
 				tabContent: (
 					<Tasks
 					checkedIndexes={[0, 3]}
 					tasksIndexes={[0, 1, 2, 3]}
-					tasks={bugs}
+					tasks={this.state.tasks}
 					/>
 					)
-			},
-			{
-				tabName: "Progressos",
-				tabIcon: Code,
-				tabContent: (
-					<Tasks
-					checkedIndexes={[0]}
-					tasksIndexes={[0, 1]}
-					tasks={website}
-					/>
-				)
 			}
 			]}
 		/>

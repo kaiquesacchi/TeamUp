@@ -28,5 +28,14 @@ class StatusProject(Resource):
                 'Teste de integração de todo o sistema',
                 'Happy Hour de comemoração',
                 'Relatório final'
-            ]
+            ],
+            'employees': {
+                'value': [
+                    ["Mike Wazalski", "R$1536,738", "Marketing"],
+                    ["Jessica Alba", "R$3223,789", "Programação"],
+                    ["Roberto Freitas", "R$4256,142", "Engenharia de software"],
+                    ["Bruce Wayne", "R$1838,735", "Relações humanas"]
+                ],
+                'last_update': '3 dias atrás'
+            }
         }
