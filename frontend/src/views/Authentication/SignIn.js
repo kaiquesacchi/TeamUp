@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+const API_URL = process.env.API_URL || 'http://localhost:5000';
+
 class SignIn extends Component {
 	constructor() {
 		super();
@@ -23,12 +25,19 @@ class SignIn extends Component {
 		});
 	}
 
-	handleSubmit(e) {
+	async handleSubmit(e) {
 		e.preventDefault();
 
-		console.log('The form was submitted with the following data:');
-		console.log(this.state);
-		this.props.history.push("/inicio")
+		const result = await fetch(API_URL + '/login', {
+			method: 'POST',
+			body: JSON.stringify(this.state),
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
+		const resultJSON = await result.json();
+		console.log(resultJSON);
+		this.props.history.push("/inicio");
 	}
 
 	render() {
@@ -47,7 +56,7 @@ class SignIn extends Component {
 		</div>
 
 		<div className="FormField">
-			<button className="FormField__Button mr-20">Entrar</button> <Link to="/sign-up" className="FormField__Link">Criar uma Conta</Link>
+			<button className="FormField__Button mr-20">Entrar</button> <Link to="/auth/sign-up" className="FormField__Link">Criar uma Conta</Link>
 		</div>
 	</form>
 </div>
