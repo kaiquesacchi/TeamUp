@@ -16,7 +16,7 @@ class User(db.Model):
         self.password = password
 
     def __repr__(self):
-        return "User('{}', '{}')".format(self.id, self.email)
+        return "User('{}', '{}', '{}', '{}')".format(self.id, self.name, self.email, self.type)
 
     __mapper_args__ = {
         'polymorphic_identity': 'user',
@@ -32,6 +32,8 @@ class Client(User):
     def __init__(self, name, email, password):
         User.__init__(self, name, email, password)
     
+    def __repr__(self):
+        return "User('{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.email, self.type, self.projects)
     __mapper_args__ = {
         'polymorphic_identity': 'client',
     }
@@ -58,16 +60,20 @@ class Integrator(User):
 
 
 class Project(db.Model):
-    demand = db.relationship('Demand', uselist=False)
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     cost = db.Column(db.Float, nullable=False)
-    # team
+    # final_date = db.Column(db.Date, nullable=False)
+    spending = db.Column(db.Float, nullable=False)
+    
+    # Relationships
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
                           nullable=False)
-    final_date = db.Column(db.Date, nullable=False)
-    spending = db.Column(db.Float, nullable=False)
+    # team
+    # demand = db.relationship('Demand', uselist=False)
     # problems_solved
     # tasks_completed
+    def __repr__(self):
+        return "Project('{}', '{}', '{}', '{}')".format(self.id, self.cost, self.spending, self.client_id)
 
 
 class Demand(db.Model):

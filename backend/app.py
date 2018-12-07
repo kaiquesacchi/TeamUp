@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 
 
 # Models
-from models import User, Client, ServiceProvider, Integrator
+from models import User, Client, ServiceProvider, Integrator, Project
 
 
 api.add_resource(CreateProposal, '/proposta')
@@ -35,12 +35,19 @@ api.add_resource(Login, '/login')
 api.add_resource(CreateAccount, '/conta/criar')
 
 
-db.create_all()
-# user1 = Client('João', 'joao@mail.com', '12345')
-# db.session.add(user1)
-# db.session.commit()
-# print(Client.query.all())
+try:
+	db.create_all()
+	user1 = Client('João', 'joao@mail.com', '12345')
+	db.session.add(user1)
+	print(Client.query.all())
 
+	project = Project(cost=30.3, spending=12.2, client_id=user1.id)
+	db.session.add(project)
+	db.session.commit()
+	print(Client.query.all())
+	print(Project.query.all())
+except:
+	print("Usuário já cadastrado")
 
 if __name__ == '__main__':
     app.run(debug=True)
