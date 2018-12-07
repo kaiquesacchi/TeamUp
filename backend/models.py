@@ -25,7 +25,7 @@ class User(db.Model):
 class Client(User):
     __tablename__ = 'client'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    # projects
+    projects = db.relationship('Project', backref='client', lazy=True)
 
     __mapper_args__ = {
         'polymorphic_identity': 'client',
@@ -36,8 +36,8 @@ class ServiceProvider(User):
     __tablename__ = 'service_provider'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     # projets
-    # skills
-    # curriculum
+    skills = db.Column(db.String(100), nullable=False)
+    curriculum = db.Column(db.String(1000), nullable=False)
     __mapper_args__ = {
         'polymorphic_identity': 'service_provider',
     }
@@ -53,11 +53,12 @@ class Integrator(User):
 
 
 class Project(db.Model):
-    # demand
+    demand = db.relationship('Demand', uselist=False)
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     cost = db.Column(db.Float, nullable=False)
     # team
-    # client
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
+                          nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     spending = db.Column(db.Float, nullable=False)
     # problems_solved
@@ -70,7 +71,8 @@ class Demand(db.Model):
     funcionalities = db.Column(db.String(300), nullable=False)
     platform = db.Column(db.String(100), nullable=False)
     final_date = db.Column(db.Date, nullable=False)
-    # proposals
+    proposals = db.relationship('Proposals', backref='demand', lazy=True)
+    project = db.relationship('Project', uselist=False)
 
 
 class Proposals(db.Model):
@@ -79,3 +81,5 @@ class Proposals(db.Model):
     cost = db.Column(db.Float, nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     client_approval = db.Column(db.Boolean, nullable=False)
+    demand_id = db.Column(db.Integer, db.ForeignKey('demand.id'),
+                          nullable=False)
