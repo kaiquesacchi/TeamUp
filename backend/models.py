@@ -25,7 +25,7 @@ class User(db.Model):
 class Client(User):
     __tablename__ = 'client'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    # projetos
+    # projects
 
     __mapper_args__ = {
         'polymorphic_identity': 'client',
@@ -35,9 +35,9 @@ class Client(User):
 class ServiceProvider(User):
     __tablename__ = 'service_provider'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    # projetos
-    # especialidade
-    # curriculo
+    # projets
+    # skills
+    # curriculum
     __mapper_args__ = {
         'polymorphic_identity': 'service_provider',
     }
@@ -50,3 +50,32 @@ class Integrator(User):
     __mapper_args__ = {
         'polymorphic_identity': 'integrator',
     }
+
+
+class Project(db.Model):
+    # demand
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    cost = db.Column(db.Float, nullable=False)
+    # team
+    # client
+    final_date = db.Column(db.Date, nullable=False)
+    spending = db.Column(db.Float, nullable=False)
+    # problems_solved
+    # tasks_completed
+
+
+class Demand(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
+    funcionalities = db.Column(db.String(300), nullable=False)
+    platform = db.Column(db.String(100), nullable=False)
+    final_date = db.Column(db.Date, nullable=False)
+    # proposals
+
+
+class Proposals(db.Model):
+    id = db.Column(db.Integer, primary_key=True, nullable=False)
+    # team
+    cost = db.Column(db.Float, nullable=False)
+    final_date = db.Column(db.Date, nullable=False)
+    client_approval = db.Column(db.Boolean, nullable=False)
