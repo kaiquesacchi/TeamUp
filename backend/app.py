@@ -36,6 +36,10 @@ api.add_resource(CreateAccount, '/conta/criar')
 
 
 db.create_all()
+# user1 = Client('João', 'joao@mail.com', '12345')
+# db.session.add(user1)
+# db.session.commit()
+# print(Client.query.all())
 
 
 if __name__ == '__main__':
