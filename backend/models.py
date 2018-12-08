@@ -1,7 +1,23 @@
-from __main__ import db
+from __main__ import db, Base
 
+# Associations classes
 
-class User(db.Model):
+class AssociationServiceProviderProject(Base):
+    __tablename__ = 'association-service_provider-project'
+    service_provider_id = db.Column(db.Integer, db.ForeignKey('service_provider.id'), primary_key=True)
+    project_id = db.Column(db.Integer, db.ForeignKey('project.id'), primary_key=True)
+    service_provider = db.relationship('ServiceProvider', back_populates='projects')
+    project = db.relationship('Project', back_populates='service_providers')
+
+    def __init__(self, project, service_provider):
+        self.project = project
+        self.project_id = project.id
+        self.service_provider = service_provider
+        self.service_provider_id = service_provider.id
+
+# Models
+
+class User(Base):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -33,7 +49,7 @@ class Client(User):
         User.__init__(self, name, email, password)
     
     def __repr__(self):
-        return "User('{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.email, self.type, self.projects)
+        return "Client('{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.email, self.type, self.projects)
     __mapper_args__ = {
         'polymorphic_identity': 'client',
     }
@@ -42,12 +58,20 @@ class Client(User):
 class ServiceProvider(User):
     __tablename__ = 'service_provider'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    # projets
+    projects = db.relationship('AssociationServiceProviderProject', back_populates='service_provider')
     skills = db.Column(db.String(100), nullable=False)
     curriculum = db.Column(db.String(1000), nullable=False)
     __mapper_args__ = {
         'polymorphic_identity': 'service_provider',
     }
+
+    def __init__(self, name, email, password, skills, curriculum):
+        User.__init__(self, name, email, password)
+        self.skills = skills
+        self.curriculum = curriculum
+
+    def __repr__(self):
+        return "Service Provider('{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.skills, self.type, self.projects)
 
 
 class Integrator(User):
@@ -59,7 +83,8 @@ class Integrator(User):
     }
 
 
-class Project(db.Model):
+class Project(Base):
+    __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     cost = db.Column(db.Float, nullable=False)
     # final_date = db.Column(db.Date, nullable=False)
@@ -68,26 +93,29 @@ class Project(db.Model):
     # Relationships
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
                           nullable=False)
+    service_providers = db.relationship('AssociationServiceProviderProject', back_populates='project')
     # team
     # demand = db.relationship('Demand', uselist=False)
     # problems_solved
     # tasks_completed
     def __repr__(self):
-        return "Project('{}', '{}', '{}', '{}')".format(self.id, self.cost, self.spending, self.client_id)
+        return "Project('{}', '{}', '{}', '{}', '{})".format(self.id, self.cost, self.spending, self.client_id, self.service_providers)
 
 
-class Demand(db.Model):
+class Demand(Base):
+    __tablename__ = 'demand'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     funcionalities = db.Column(db.String(300), nullable=False)
     platform = db.Column(db.String(100), nullable=False)
     final_date = db.Column(db.Date, nullable=False)
-    proposals = db.relationship('Proposals', backref='demand', lazy=True)
-    project = db.relationship('Project', uselist=False)
-    project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
+    proposals = db.relationship('Proposal', backref='demand', lazy=True)
+    # project = db.relationship('Project', uselist=False)
+    # project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
 
 
-class Proposals(db.Model):
+class Proposal(Base):
+    __tablename__ = 'proposal'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     # team
     cost = db.Column(db.Float, nullable=False)
