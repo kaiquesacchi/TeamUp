@@ -87,19 +87,21 @@ class Project(Base):
     __tablename__ = 'project'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     cost = db.Column(db.Float, nullable=False)
-    # final_date = db.Column(db.Date, nullable=False)
+    final_date = db.Column(db.Date, nullable=False)
     spending = db.Column(db.Float, nullable=False)
-    
+    tasks_completed= db.Column(db.models.Integer,nullable=True)
     # Relationships
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
                           nullable=False)
     service_providers = db.relationship('AssociationServiceProviderProject', back_populates='project')
+    demand_id = db.Column(db.Integer,db.ForeignKey('Demand.id'))
+    origin_demand=db.relationship('origin_demand',backref='Project')
     # team
     # demand = db.relationship('Demand', uselist=False)
     # problems_solved
     # tasks_completed
     def __repr__(self):
-        return "Project('{}', '{}', '{}', '{}', '{})".format(self.id, self.cost, self.spending, self.client_id, self.service_providers)
+        return "Project('{}', '{}', '{}', '{}', '{})".format(self.id, self.cost,self.final_date, self.spending, self.client_id, self.service_providers)
 
 
 class Demand(Base):
