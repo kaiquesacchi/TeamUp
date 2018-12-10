@@ -61,6 +61,7 @@ class ServiceProvider(User):
     projects = db.relationship('AssociationServiceProviderProject', back_populates='service_provider')
     skills = db.Column(db.String(100), nullable=False)
     curriculum = db.Column(db.String(1000), nullable=False)
+    proposal_id =db.Column(db.Integer,db.ForeignKey('Proposal.id'))
     __mapper_args__ = {
         'polymorphic_identity': 'service_provider',
     }
@@ -119,7 +120,7 @@ class Demand(Base):
 class Proposal(Base):
     __tablename__ = 'proposal'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    # team
+    team = db.relantionship('ServiceProvider', backref='Team', lazy='dynamic')
     cost = db.Column(db.Float, nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     client_approval = db.Column(db.Boolean, nullable=False)
