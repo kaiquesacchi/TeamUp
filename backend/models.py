@@ -72,7 +72,8 @@ class ServiceProvider(User):
         self.curriculum = curriculum
 
     def __repr__(self):
-        return "Service Provider('{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.skills, self.type, self.projects)
+        return "Service Provider('{}', '{}', '{}', '{}', '{}')".format(
+            self.id, self.name, self.skills, self.type, self.projects)
 
 
 class Integrator(User):
@@ -90,19 +91,23 @@ class Project(Base):
     cost = db.Column(db.Float, nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     spending = db.Column(db.Float, nullable=False)
-    tasks_completed= db.Column(db.models.Integer,nullable=True)
+    tasks_completed = db.Column(db.Integer, nullable=True)
     # Relationships
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
                           nullable=False)
-    service_providers = db.relationship('AssociationServiceProviderProject', back_populates='project')
-    demand_id = db.Column(db.Integer,db.ForeignKey('Demand.id'))
-    origin_demand=db.relationship('origin_demand',backref='Project')
+    service_providers = db.relationship('AssociationServiceProviderProject',
+                                        back_populates='project')
+    demand_id = db.Column(db.Integer, db.ForeignKey('Demand.id'))
+    origin_demand = db.relationship('origin_demand', backref='Project')
     # team
     # demand = db.relationship('Demand', uselist=False)
     # problems_solved
     # tasks_completed
+
     def __repr__(self):
-        return "Project('{}', '{}', '{}', '{}', '{})".format(self.id, self.cost,self.final_date, self.spending, self.client_id, self.service_providers)
+        return "Project('{}', '{}', '{}', '{}', '{})".format(
+            self.id, self.cost, self.final_date,
+            self.spending, self.client_id, self.service_providers)
 
 
 class Demand(Base):
@@ -120,7 +125,7 @@ class Demand(Base):
 class Proposal(Base):
     __tablename__ = 'proposal'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    team = db.relantionship('ServiceProvider', backref='Team', lazy='dynamic')
+    team = db.relationship('ServiceProvider', backref='Team', lazy='dynamic')
     cost = db.Column(db.Float, nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     client_approval = db.Column(db.Boolean, nullable=False)
