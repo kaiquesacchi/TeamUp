@@ -14,6 +14,11 @@ class AssociationServiceProviderProject(Base):
         self.project_id = project.id
         self.service_provider = service_provider
         self.service_provider_id = service_provider.id
+    
+    def __repr__(self):
+        return "Associatinon: ServiceProvider-Project('{}', '{}')".format(
+            self.service_provider_id, self.project_id)
+
 
 # Models
 
@@ -62,18 +67,20 @@ class ServiceProvider(User):
     skills = db.Column(db.String(100), nullable=False)
     curriculum = db.Column(db.String(1000), nullable=False)
     proposal_id = db.Column(db.Integer, db.ForeignKey('proposal.id'))
+    cost_per_project = db.Column(db.Float, nullable=False)
     __mapper_args__ = {
         'polymorphic_identity': 'service_provider',
     }
 
-    def __init__(self, name, email, password, skills, curriculum):
+    def __init__(self, name, email, password, skills, curriculum, cost_per_project):
         User.__init__(self, name, email, password)
         self.skills = skills
         self.curriculum = curriculum
+        self.cost_per_project = cost_per_project
 
     def __repr__(self):
-        return "Service Provider('{}', '{}', '{}', '{}', '{}')".format(
-            self.id, self.name, self.skills, self.type, self.projects)
+        return "Service Provider('{}', '{}', '{}', '{}', '{}', '{}')".format(
+            self.id, self.name, self.skills, self.type, self.projects, self.cost_per_project)
 
 
 class Integrator(User):

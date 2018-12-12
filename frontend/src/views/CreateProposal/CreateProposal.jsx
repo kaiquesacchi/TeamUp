@@ -174,7 +174,7 @@ class CreateProposal extends Component {
 										<h3>Equipe escolhida</h3>
 										<Table
 											tableHeaderColor="warning"
-											tableHead={["Nome", "Função", "Média por projeto", "Adicionar"]}
+											tableHead={["Nome", "Habilidades", "Média por projeto", "Adicionar"]}
 											tableData={this.state.selectedList}
 											buttonAction={(key) => this.deselectPerson(key)}
 											buttonText={"Retirar"}
@@ -184,7 +184,7 @@ class CreateProposal extends Component {
 								<h3>Profissionais disponíveis</h3>
 								<Table
 									tableHeaderColor="warning"
-									tableHead={["Nome", "Função", "Média por projeto", "Adicionar"]}
+									tableHead={["Nome", "Habilidades", "Média por projeto", "Adicionar"]}
 									tableData={this.state.fullList}
 									buttonAction={(key) => this.selectPerson(key)}
 									buttonText={"Adicionar"}
