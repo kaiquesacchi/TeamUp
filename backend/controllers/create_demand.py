@@ -14,7 +14,7 @@ class CreateDemand(Resource):
     def post(self):
         requestData = request.get_json()
         date = datetime.datetime.strptime(requestData.get('maxDate'), '%d/%m/%Y')
-        demand = Demand(description=requestData.get('description'), funcionalities=requestData.get('funcionalities'),
+        demand = Demand(name=requestData.get('name'), description=requestData.get('description'), funcionalities=requestData.get('funcionalities'),
                         final_date=date, platform='desktop')
         db.session.add(demand)
         db.session.commit()

@@ -14,7 +14,7 @@ class AssociationServiceProviderProject(Base):
         self.project_id = project.id
         self.service_provider = service_provider
         self.service_provider_id = service_provider.id
-    
+
     def __repr__(self):
         return "Associatinon: ServiceProvider-Project('{}', '{}')".format(
             self.service_provider_id, self.project_id)
@@ -120,6 +120,7 @@ class Project(Base):
 class Demand(Base):
     __tablename__ = 'demand'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     funcionalities = db.Column(db.String(300), nullable=False)
     platform = db.Column(db.String(100), nullable=False)
@@ -128,14 +129,15 @@ class Demand(Base):
     # project = db.relationship('Project', uselist=False)
     # project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
 
-    def __init__(self, description, funcionalities, platform, final_date):
+    def __init__(self, name, description, funcionalities, platform, final_date):
+        self.name = name
         self.description = description
         self.funcionalities= funcionalities
         self.platform= platform
         self.final_date= final_date
 
     def __repr__(self):
-        return "Demand('{}', '{}', '{}', '{}', '{}')".format(self.id, self.description, self.funcionalities, self.platform, self.final_date)
+        return "Demand('{}', '{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.description, self.funcionalities, self.platform, self.final_date)
 
 
 class Proposal(Base):
