@@ -30,6 +30,7 @@ class CreateProposal extends Component {
 			proposal: '',
 			value: '',
 			selectedList: [],
+			serviceProviderIds: [],
 			fullList: [],
 			demand: '',
 			demands: [],
@@ -59,10 +60,13 @@ class CreateProposal extends Component {
 	selectPerson(index) {
 		const fullList = this.state.fullList;
 		const selectedList = this.state.selectedList;
+		const serviceProviderIds = this.state.serviceProviderIds;
+		serviceProviderIds.push(fullList[index][3]);
 		selectedList.push(fullList.splice(index, 1)[0]);
 		this.setState({
 			fullList,
 			selectedList,
+			serviceProviderIds,
 			error: false,
 			errorDemand: false,
 		});
@@ -71,10 +75,13 @@ class CreateProposal extends Component {
 	deselectPerson(index) {
 		const fullList = this.state.fullList;
 		const selectedList = this.state.selectedList;
+		const serviceProviderIds = this.state.serviceProviderIds;
+		serviceProviderIds.splice(index, 1);
 		fullList.push(selectedList.splice(index, 1)[0]);
 		this.setState({
 			fullList,
 			selectedList,
+			serviceProviderIds,
 			error: false,
 			errorDemand: false,
 		});
@@ -214,7 +221,9 @@ class CreateProposal extends Component {
 										<Table
 											tableHeaderColor="warning"
 											tableHead={["Nome", "Habilidades", "Média por projeto", "Adicionar"]}
-											tableData={this.state.selectedList}
+											tableData={this.state.selectedList.map(prof =>
+												[prof[0], prof[1], prof[2]]
+											)}
 											buttonAction={(key) => this.deselectPerson(key)}
 											buttonText={"Retirar"}
 										/>
@@ -224,7 +233,9 @@ class CreateProposal extends Component {
 								<Table
 									tableHeaderColor="warning"
 									tableHead={["Nome", "Habilidades", "Média por projeto", "Adicionar"]}
-									tableData={this.state.fullList}
+									tableData={this.state.fullList.map(prof =>
+										[prof[0], prof[1], prof[2]]
+									)}
 									buttonAction={(key) => this.selectPerson(key)}
 									buttonText={"Adicionar"}
 								/>
