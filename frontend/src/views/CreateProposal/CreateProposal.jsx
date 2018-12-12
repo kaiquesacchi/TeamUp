@@ -3,6 +3,10 @@ import { withRouter } from 'react-router';
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -27,8 +31,11 @@ class CreateProposal extends Component {
 			value: '',
 			selectedList: [],
 			fullList: [],
+			demand: '',
+			demands: [],
 			created: false,
 			error: false,
+			errorDemand: false,
 		};
 
 		this.handleChange = this.handleChange.bind(this);
@@ -45,6 +52,7 @@ class CreateProposal extends Component {
 		const resultJSON = await result.json();
 		this.setState({
 			fullList: resultJSON.professionals,
+			demands: resultJSON.demands,
 		});
 	}
 
@@ -56,6 +64,7 @@ class CreateProposal extends Component {
 			fullList,
 			selectedList,
 			error: false,
+			errorDemand: false,
 		});
 	}
 
@@ -67,6 +76,7 @@ class CreateProposal extends Component {
 			fullList,
 			selectedList,
 			error: false,
+			errorDemand: false,
 		});
 	}
 
@@ -85,27 +95,33 @@ class CreateProposal extends Component {
 		if (this.state.selectedList.length === 0) {
 			this.setState({error: true});
 		} else {
-			const result = await fetch(API_URL + '/proposta', {
-				method: 'POST',
-				body: JSON.stringify(this.state),
-				headers: {
-					'content-type': 'application/json',
-				},
-			});
-			const resultJSON = await result.json();
-			if (resultJSON.erro) {
-				this.error = true;
-			  } else {
-				const fullList = this.state.fullList.concat(this.state.selectedList);
-				this.setState({
-					proposal: '',
-					value: '',
-					selectedList: [],
-					fullList,
-					created: true,
-					error: false,
+			if (this.state.demand === '') {
+				this.setState({errorDemand: true});
+			} else {
+				const result = await fetch(API_URL + '/proposta', {
+					method: 'POST',
+					body: JSON.stringify(this.state),
+					headers: {
+						'content-type': 'application/json',
+					},
 				});
-			  }
+				const resultJSON = await result.json();
+				if (resultJSON.erro) {
+					this.error = true;
+				} else {
+					const fullList = this.state.fullList.concat(this.state.selectedList);
+					this.setState({
+						proposal: '',
+						value: '',
+						selectedList: [],
+						fullList,
+						demand: '',
+						created: true,
+						error: false,
+						errorDemand: false
+					});
+				}
+			}
 		}
 	}
 
@@ -164,6 +180,29 @@ class CreateProposal extends Component {
 										/>
 									</GridItem>
 								</GridContainer>
+								<FormControl className={classes.selectField}>
+									<InputLabel htmlFor="demand">Demanda</InputLabel>
+									<Select
+										value={this.state.demand}
+										onChange={this.handleChange}
+										name="demand"
+										inputProps={{
+											id: 'demand',
+										}}
+									>
+										<MenuItem value="">
+										<em>-</em>
+										</MenuItem>
+										{this.state.demands.map(demand =>
+											<MenuItem value={demand.value}>{demand.name}</MenuItem>
+										)}
+									</Select>
+								</FormControl>
+								{this.state.errorDemand &&
+									<div style={{fontSize: '1.5rem', padding: '15px 0'}}>
+										É preciso selecionar uma demanda!
+									</div>
+								}
 								{this.state.error &&
 									<div style={{fontSize: '1.5rem', padding: '15px 0'}}>
 										É preciso adicionar pessoa(s) à equipe!

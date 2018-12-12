@@ -2,7 +2,7 @@ from flask_restful import Resource
 from flask import request
 
 # Database
-from models import ServiceProvider
+from models import ServiceProvider, Demand
 from __main__ import db
 
 
@@ -15,8 +15,16 @@ class CreateProposal(Resource):
         professionals = []
         for prof in allProfessionals:
             professionals.append([prof.name, prof.skills, prof.cost_per_project])
+        allDemands = Demand.query.all()
+        demands = []
+        for demand in allDemands:
+            demands.append({
+                'name': demand.name,
+                'value': demand.id,
+            })
         return {
-            'professionals': professionals
+            'professionals': professionals,
+            'demands': demands
         }
 
     def post(self):

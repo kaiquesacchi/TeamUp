@@ -73,6 +73,9 @@ const dashboardStyle = theme => ({
       lineHeight: "1"
     }
   },
+  selectField: {
+    minWidth: 300,
+  },
 });
 
 export default dashboardStyle;
