@@ -1,19 +1,22 @@
 from flask_restful import Resource
 from flask import request
 
+# utils
+import datetime
+
+# Database
+from models import Demand
+from __main__ import db
+
 
 class CreateDemand(Resource):
 
-    demandas = []
-
     def post(self):
         requestData = request.get_json()
-        prop = {
-                'name': requestData.get('name'),
-                'description': requestData.get('description'),
-                'funcionalities': requestData.get('funcionalities'),
-                'maxDate': requestData.get('maxDate'),
-            }
-        self.demandas.append(prop)
-        print(self.demandas)
-        return {'demanda': prop}
+        date = datetime.datetime.strptime(requestData.get('maxDate'), '%d/%m/%Y')
+        demand = Demand(description=requestData.get('description'), funcionalities=requestData.get('funcionalities'),
+                        final_date=date, platform='desktop')
+        db.session.add(demand)
+        db.session.commit()
+        print(Demand.query.all())
+        return {'status': 'criada'}
