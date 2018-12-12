@@ -16,7 +16,7 @@ class AssociationServiceProviderProject(Base):
         self.service_provider_id = service_provider.id
 
     def __repr__(self):
-        return "Associatinon: ServiceProvider-Project('{}', '{}')".format(
+        return "Association: ServiceProvider-Project('{}', '{}')".format(
             self.service_provider_id, self.project_id)
 
 
@@ -104,17 +104,18 @@ class Project(Base):
                           nullable=False)
     service_providers = db.relationship('AssociationServiceProviderProject',
                                         back_populates='project')
-    demand_id = db.Column(db.Integer, db.ForeignKey('demand.id'))
-    # origin_demand = db.relationship('origin_demand', backref='Project')
+    demand_id = db.Column(db.Integer, db.ForeignKey('demand.id'), nullable=False)
+    origin_demand = db.relationship('Demand', foreign_keys=[demand_id])
     # team
     # demand = db.relationship('Demand', uselist=False)
     # problems_solved
     # tasks_completed
 
     def __repr__(self):
-        return "Project('{}', '{}', '{}', '{}', '{}', '{}')".format(
+        return "Project('{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(
             self.id, self.cost, self.final_date,
-            self.spending, self.client_id, self.service_providers)
+            self.spending, self.client_id, self.service_providers,
+            self.origin_demand)
 
 
 class Demand(Base):

@@ -1,17 +1,18 @@
 from flask_restful import Resource
 from flask import request
 
+# Database
+from models import Project
+from __main__ import db
+
 
 class ProjectsList(Resource):
 
     def get(self):
+        allProjects = Project.query.all()
+        projects = []
+        for proj in allProjects:
+            projects.append([proj.origin_demand.name, proj.origin_demand.platform, str(proj.final_date), proj.cost])
         return {
-            'projetos': [
-                ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-				["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-				["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-				["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-				["Doris Greene", "Malawi", "Feldkirchen in Karnten", "$63,542"],
-				["Mason Porter", "Chile", "Gloucester", "$78,615"]
-            ]
+            'projetos': projects
         }

@@ -79,7 +79,7 @@ class ProjectsList extends Component {
 						<CardBody>
 							<Table
 								tableHeaderColor="primary"
-								tableHead={["Nome", "Tipo", "Status", "Preço", "Acompanhar"]}
+								tableHead={["Nome", "Plataforma", "Data prevista", "Preço", "Acompanhar"]}
 								tableData={this.state.projetos}
 								buttonLink={["/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status"]}
 								buttonText={"Verificar status"}

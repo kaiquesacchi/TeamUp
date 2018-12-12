@@ -15,7 +15,7 @@ db = SQLAlchemy(app, model_class=Base)
 import datetime
 
 # Models
-from models import User, Client, ServiceProvider, Integrator, Project, AssociationServiceProviderProject
+from models import User, Client, ServiceProvider, Integrator, Project, AssociationServiceProviderProject, Demand
 
 # Controllers
 from controllers.create_proposal import CreateProposal
@@ -53,15 +53,28 @@ try:
     print(ServiceProvider.query.all())
     print('\n\n\n')
 
-    date = datetime.datetime.strptime('20/10/2019', '%d/%m/%Y')
-    project = Project(cost=30.3, spending=12.2, client_id=client1.id, final_date=date)
-    db.session.add(project)
+    date1 = datetime.datetime.strptime('20/10/2019', '%d/%m/%Y')
+    date2 = datetime.datetime.strptime('15/8/2020', '%d/%m/%Y')
+
+    demand1 = Demand(name='Reestruturação do TI', description='Mudança nas metodologias utilizadas', funcionalities='Robos',
+                        final_date=date1, platform='desktop')
+    demand2 = Demand(name='Criação de um app', description='App nativo para divulgação', funcionalities='Touch',
+                        final_date=date2, platform='mobile')
+    db.session.add(demand1)
+    db.session.add(demand2)
+    print(Demand.query.all())
+    print('\n\n\n')
+
+    project1 = Project(cost=30.3, spending=12.2, client_id=client1.id, final_date=date1, demand_id=demand1.id)
+    project2 = Project(cost=100, spending=102.1, client_id=client1.id, final_date=date2, demand_id=demand2.id)
+    db.session.add(project1)
+    db.session.add(project2)
     print(Project.query.all())
     print('\n\n\n')
 
-    association1 = AssociationServiceProviderProject(project, user1)
-    association2 = AssociationServiceProviderProject(project, user2)
-    association3 = AssociationServiceProviderProject(project, user3)
+    association1 = AssociationServiceProviderProject(project1, user1)
+    association2 = AssociationServiceProviderProject(project1, user2)
+    association3 = AssociationServiceProviderProject(project2, user3)
 
     db.session.commit()
     print(Client.query.all())
