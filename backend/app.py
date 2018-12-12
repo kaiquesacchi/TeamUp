@@ -15,7 +15,7 @@ db = SQLAlchemy(app, model_class=Base)
 import datetime
 
 # Models
-from models import User, Client, ServiceProvider, Integrator, Project, AssociationServiceProviderProject, Demand
+from models import User, Client, ServiceProvider, Integrator, Project, AssociationServiceProviderProject, Demand, Proposal, AssociationServiceProviderProposal
 
 # Controllers
 from controllers.create_proposal import CreateProposal
@@ -75,6 +75,25 @@ try:
     association1 = AssociationServiceProviderProject(project1, user1)
     association2 = AssociationServiceProviderProject(project1, user2)
     association3 = AssociationServiceProviderProject(project2, user3)
+    db.session.add(association1)
+    db.session.add(association2)
+    db.session.add(association3)
+
+    proposal1 = Proposal(demand_id=demand1.id, client_approval=False,
+                            cost=1234, final_date=date1)
+    proposal2 = Proposal(demand_id=demand1.id, client_approval=False,
+                            cost=123, final_date=date2)
+    db.session.add(proposal1)
+    db.session.add(proposal2)
+
+    association11 = AssociationServiceProviderProposal(proposal1, user1)
+    association12 = AssociationServiceProviderProposal(proposal1, user2)
+    association13 = AssociationServiceProviderProposal(proposal2, user1)
+    association14 = AssociationServiceProviderProposal(proposal2, user3)
+    db.session.add(association11)
+    db.session.add(association12)
+    db.session.add(association13)
+    db.session.add(association14)
 
     db.session.commit()
     print(Client.query.all())
@@ -82,6 +101,10 @@ try:
     print(ServiceProvider.query.all())
     print('\n\n\n')
     print(Project.query.all())
+    print('\n\n\n')
+    print(Proposal.query.all())
+    print('\n\n\n')
+    print(AssociationServiceProviderProposal.query.all())
     print('\n\n\n')
 except Exception as e:
     print(e)

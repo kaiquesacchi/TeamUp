@@ -19,6 +19,22 @@ class AssociationServiceProviderProject(Base):
         return "Association: ServiceProvider-Project('{}', '{}')".format(
             self.service_provider_id, self.project_id)
 
+class AssociationServiceProviderProposal(Base):
+    __tablename__ = 'association-service_provider-proposal'
+    service_provider_id = db.Column(db.Integer, db.ForeignKey('service_provider.id'), primary_key=True)
+    proposal_id = db.Column(db.Integer, db.ForeignKey('proposal.id'), primary_key=True)
+    service_provider = db.relationship('ServiceProvider', back_populates='proposals')
+    proposal = db.relationship('Proposal', back_populates='service_providers')
+
+    def __init__(self, proposal, service_provider):
+        self.proposal = proposal
+        self.proposal_id = proposal.id
+        self.service_provider = service_provider
+        self.service_provider_id = service_provider.id
+
+    def __repr__(self):
+        return "Association: ServiceProvider-Proposal('{}', '{}')".format(
+            self.service_provider_id, self.proposal_id)
 
 # Models
 
@@ -64,6 +80,7 @@ class ServiceProvider(User):
     __tablename__ = 'service_provider'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     projects = db.relationship('AssociationServiceProviderProject', back_populates='service_provider')
+    proposals = db.relationship('AssociationServiceProviderProposal', back_populates='service_provider')
     skills = db.Column(db.String(100), nullable=False)
     curriculum = db.Column(db.String(1000), nullable=False)
     proposal_id = db.Column(db.Integer, db.ForeignKey('proposal.id'))
@@ -79,8 +96,9 @@ class ServiceProvider(User):
         self.cost_per_project = cost_per_project
 
     def __repr__(self):
-        return "Service Provider('{}', '{}', '{}', '{}', '{}', '{}')".format(
-            self.id, self.name, self.skills, self.type, self.projects, self.cost_per_project)
+        return "Service Provider('{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(
+            self.id, self.name, self.skills, self.type, self.projects, self.cost_per_project,
+            self.proposals)
 
 
 class Integrator(User):
@@ -144,7 +162,8 @@ class Demand(Base):
 class Proposal(Base):
     __tablename__ = 'proposal'
     id = db.Column(db.Integer, primary_key=True, nullable=False)
-    team = db.relationship('ServiceProvider', backref='proposal', lazy=True)
+    service_providers = db.relationship('AssociationServiceProviderProposal',
+                                        back_populates='proposal')
     cost = db.Column(db.Float, nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     client_approval = db.Column(db.Boolean, nullable=False)
