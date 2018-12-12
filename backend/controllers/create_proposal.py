@@ -14,7 +14,7 @@ class CreateProposal(Resource):
         allProfessionals = ServiceProvider.query.all()
         professionals = []
         for prof in allProfessionals:
-            professionals.append([prof.name, prof.skills, prof.cost_per_project])
+            professionals.append([prof.name, prof.skills, str(prof.cost_per_project)])
         allDemands = Demand.query.all()
         demands = []
         for demand in allDemands:

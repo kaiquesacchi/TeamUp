@@ -12,7 +12,7 @@ class ProjectsList(Resource):
         allProjects = Project.query.all()
         projects = []
         for proj in allProjects:
-            projects.append([proj.origin_demand.name, proj.origin_demand.platform, str(proj.final_date), proj.cost])
+            projects.append([proj.origin_demand.name, proj.origin_demand.platform, str(proj.final_date), str(proj.cost)])
         return {
             'projetos': projects
         }

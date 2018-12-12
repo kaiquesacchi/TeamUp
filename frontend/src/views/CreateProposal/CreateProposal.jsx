@@ -193,8 +193,8 @@ class CreateProposal extends Component {
 										<MenuItem value="">
 										<em>-</em>
 										</MenuItem>
-										{this.state.demands.map(demand =>
-											<MenuItem value={demand.value}>{demand.name}</MenuItem>
+										{this.state.demands.map((demand, i) =>
+											<MenuItem key={i} value={demand.value}>{demand.name}</MenuItem>
 										)}
 									</Select>
 								</FormControl>
