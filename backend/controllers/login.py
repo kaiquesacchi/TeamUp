@@ -1,14 +1,18 @@
 from flask_restful import Resource
 from flask import request
+from models import Client
+from __main__ import db
 
 
 class Login(Resource):
 
     def post(self):
-        requestData = request.get_json()
-        prop = {
-                'email': requestData.get('email'),
-                'senha': requestData.get('password'),
-            }
-        print(prop)
-        return {'login': prop}
+        try:
+            requestData = request.get_json()
+            client = Client.query.filter_by(email=requestData.get('email')).first()
+            print('\n'*8 + str(client))
+            if client.password == requestData.get('password'):
+                return {'login': True}
+        except:
+            pass
+        return {'login': False}

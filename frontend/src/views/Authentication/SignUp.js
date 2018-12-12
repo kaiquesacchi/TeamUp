@@ -40,7 +40,10 @@ class SignUp extends Component {
 		});
 		const resultJSON = await result.json();
 		console.log(resultJSON);
-		this.props.history.push("/auth/complete-sign-up");
+		if(resultJSON.user_id){
+			this.props.history.push("/auth/complete-sign-up");
+		}
+		else alert("Houve um problema na criação do Usuário. Tente outra vez")
 	}
 
 	render() {
