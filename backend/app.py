@@ -4,6 +4,19 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
 
+app = Flask(__name__)
+api = Api(app)
+CORS(app)
+Base = declarative_base()
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database'
+db = SQLAlchemy(app, model_class=Base)
+
+# utils
+import datetime
+
+# Models
+from models import User, Client, ServiceProvider, Integrator, Project, AssociationServiceProviderProject
+
 # Controllers
 from controllers.create_proposal import CreateProposal
 from controllers.start import Start
@@ -13,18 +26,6 @@ from controllers.create_demand import CreateDemand
 from controllers.status_project import StatusProject
 from controllers.login import Login
 from controllers.create_account import CreateAccount
-
-
-app = Flask(__name__)
-api = Api(app)
-CORS(app)
-Base = declarative_base()
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database'
-db = SQLAlchemy(app, model_class=Base)
-
-
-# Models
-from models import User, Client, ServiceProvider, Integrator, Project, AssociationServiceProviderProject
 
 
 api.add_resource(CreateProposal, '/proposta')
@@ -52,7 +53,8 @@ try:
     print(ServiceProvider.query.all())
     print('\n\n\n')
 
-    project = Project(cost=30.3, spending=12.2, client_id=client1.id)
+    date = datetime.datetime.strptime('20/10/2019', '%d/%m/%Y')
+    project = Project(cost=30.3, spending=12.2, client_id=client1.id, final_date=date)
     db.session.add(project)
     print(Project.query.all())
     print('\n\n\n')
