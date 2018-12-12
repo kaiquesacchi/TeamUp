@@ -37,7 +37,10 @@ class SignIn extends Component {
 		});
 		const resultJSON = await result.json();
 		console.log(resultJSON);
-		this.props.history.push("/inicio");
+		if(resultJSON.login){
+			this.props.history.push("/inicio");
+		}
+		else alert("Login incorreto!")
 	}
 
 	render() {
