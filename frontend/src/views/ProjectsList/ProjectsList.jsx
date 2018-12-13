@@ -48,6 +48,7 @@ class ProjectsList extends Component {
 
 		this.state = {
 			projetos: [],
+			urlIds: []
 		}
 	}
 
@@ -59,8 +60,11 @@ class ProjectsList extends Component {
 			},
 		});
 		const resultJSON = await result.json();
+		const urls = [];
+		resultJSON.ids.map(id => {urls.push('/projeto/status/' + id)})
 		this.setState({
 			projetos: resultJSON.projetos,
+			urlIds: urls,
 		});
 	}
 
@@ -81,7 +85,7 @@ class ProjectsList extends Component {
 								tableHeaderColor="primary"
 								tableHead={["Nome", "Plataforma", "Data prevista", "Preço", "Acompanhar"]}
 								tableData={this.state.projetos}
-								buttonLink={["/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status", "/projeto/status"]}
+								buttonLink={this.state.urlIds}
 								buttonText={"Verificar status"}
 							/>
 						</CardBody>

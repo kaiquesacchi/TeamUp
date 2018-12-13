@@ -62,31 +62,36 @@ class StatusProject extends Component {
   }
 
   async componentDidMount(){
-		const result = await fetch(API_URL + '/projeto/status', {
-			method: 'GET',
-			headers: {
-				'content-type': 'application/json',
-			},
-		});
-		const resultJSON = await result.json();
-		this.setState(prevState =>({
-			foreseenDate: resultJSON.foreseenDate,
-			spending: resultJSON.spending,
-			foreseenSpending: resultJSON.foreseenSpending,
-			solvedProblems: resultJSON.solvedProblems,
-			tasks: resultJSON.tasks,
-			deliveries: {
-				...prevState.deliveries,
-        series: resultJSON.deliveries.value,
-        last_update: resultJSON.deliveries.last_update,
-      },
-      doneTasks: {
-        ...prevState.doneTasks,
-        series: resultJSON.doneTasks.value,
-        last_update: resultJSON.doneTasks.last_update,
-      },
-      employees: resultJSON.employees,
-		}));
+    const { id } = this.props.match.params
+    if (!id || id === ":id"){
+      this.props.history.push('/projetos')
+    } else {
+      const result = await fetch(API_URL + '/projeto/status/' + id, {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+      const resultJSON = await result.json();
+      this.setState(prevState =>({
+        foreseenDate: resultJSON.foreseenDate,
+        spending: resultJSON.spending,
+        foreseenSpending: resultJSON.foreseenSpending,
+        solvedProblems: resultJSON.solvedProblems,
+        tasks: resultJSON.tasks,
+        deliveries: {
+          ...prevState.deliveries,
+          series: resultJSON.deliveries.value,
+          last_update: resultJSON.deliveries.last_update,
+        },
+        doneTasks: {
+          ...prevState.doneTasks,
+          series: resultJSON.doneTasks.value,
+          last_update: resultJSON.doneTasks.last_update,
+        },
+        employees: resultJSON.employees,
+      }));
+  }
 	}
 
   render() {

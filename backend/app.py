@@ -33,7 +33,7 @@ api.add_resource(Start, '/start')
 api.add_resource(ProjectsList, '/projetos')
 api.add_resource(ConcludeProject, '/projeto/concluir')
 api.add_resource(CreateDemand, '/demanda')
-api.add_resource(StatusProject, '/projeto/status')
+api.add_resource(StatusProject, '/projeto/status/<id>')
 api.add_resource(Login, '/login')
 api.add_resource(CreateAccount, '/conta/criar')
 

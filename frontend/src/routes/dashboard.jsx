@@ -24,7 +24,7 @@ const dashboardRoutes = [
 		component: Start
 	},
 	{
-		path: "/projeto/status",
+		path: "/projeto/status/:id",
 		sidebarName: "Projeto",
 		navbarName: "Acompanhamento do Projeto",
 		icon: Dashboard,
