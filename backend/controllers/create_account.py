@@ -3,6 +3,7 @@ from flask import request
 from models import Client
 from __main__ import db
 
+
 class CreateAccount(Resource):
 
     def post(self):
@@ -14,14 +15,17 @@ class CreateAccount(Resource):
             db.session.add(client)
             db.session.commit()
             prop = {
-                    'email': requestData.get('email'),
-                    'senha': requestData.get('password'),
-                    'nome':  requestData.get('name'),
-                }
+                'email': requestData.get('email'),
+                'senha': requestData.get('password'),
+                'nome': requestData.get('name'),
+            }
             print(prop)
             return {
-                'user_id': client.id, 
+                'user_id': client.id,
                 'user_name': client.name
             }
-        except:
-            return {'client_id': None}
+        except Exception as e:
+            return {
+                'user_id': None,
+                'error': e
+            }

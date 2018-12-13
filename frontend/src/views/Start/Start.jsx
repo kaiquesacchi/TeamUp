@@ -38,6 +38,9 @@ import {
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 import ImageButtons from 'components/CustomButtons/ImageButtons.js'
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const API_URL = process.env.API_URL || 'http://localhost:5000';
 
