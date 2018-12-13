@@ -33,11 +33,12 @@ def generate_service_provider(quantity):
 def generate_demand(client_ids):
     date1 = datetime.datetime.strptime('20/10/2019', '%d/%m/%Y')
     demands = []
-    for client_id in client_ids:
+    plataforms = ['desktop', 'mobile']
+    for id, client_id in enumerate(client_ids):
         demands.append(Demand(name='Reestruturação do TI',
                               description='Mudança na metodologia utilizada',
                               funcionalities='Robos', final_date=date1,
-                              platform='desktop', client_id=client_id))
+                              platform=plataforms[id % 2], client_id=client_id))
         db.session.add(demands[-1])
         db.session.commit()
     return demands
