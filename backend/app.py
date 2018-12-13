@@ -38,6 +38,8 @@ api.add_resource(Login, '/login')
 api.add_resource(CreateAccount, '/conta/criar')
 
 
+db.create_all()
+
 @app.route('/tests')
 def testes():
     from misc.tests import test

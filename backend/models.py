@@ -65,6 +65,7 @@ class Client(User):
     __tablename__ = 'client'
     id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     projects = db.relationship('Project', backref='client', lazy=True)
+    demands = db.relationship('Demand', backref='client', lazy=True)
 
     def __init__(self, name, email, password):
         User.__init__(self, name, email, password)
@@ -145,18 +146,24 @@ class Demand(Base):
     platform = db.Column(db.String(100), nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     proposals = db.relationship('Proposal', backref='demand', lazy=True)
+    project = db.relationship('Project', backref='demand', lazy=True)
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
+                          nullable=False)
     # project = db.relationship('Project', uselist=False)
     # project_id = db.Column(db.Integer, db.ForeignKey('project.id'))
 
-    def __init__(self, name, description, funcionalities, platform, final_date):
+    def __init__(self, name, description, funcionalities, platform, final_date, client_id):
         self.name = name
         self.description = description
         self.funcionalities= funcionalities
         self.platform= platform
         self.final_date= final_date
+        self.client_id= client_id
 
     def __repr__(self):
-        return "Demand('{}', '{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.description, self.funcionalities, self.platform, self.final_date)
+        return "Demand('{}', '{}', '{}', '{}', '{}', '{}', '{}')".format(
+            self.id, self.name, self.description, self.funcionalities,
+            self.platform, self.final_date, self.client_id)
 
 
 class Proposal(Base):
@@ -169,3 +176,8 @@ class Proposal(Base):
     client_approval = db.Column(db.Boolean, nullable=False)
     demand_id = db.Column(db.Integer, db.ForeignKey('demand.id'),
                           nullable=False)
+
+    def __repr__(self):
+        return "Proposal('{}', '{}', '{}', '{}', '{}', '{}')".format(
+            self.id, self.cost, self.final_date, self.client_approval,
+            self.demand_id, self.service_providers)

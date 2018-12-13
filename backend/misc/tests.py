@@ -30,14 +30,14 @@ def generate_service_provider(quantity):
     return service_providers
 
 
-def generate_demand(quantity):
+def generate_demand(client_ids):
     date1 = datetime.datetime.strptime('20/10/2019', '%d/%m/%Y')
     demands = []
-    for i in range(quantity):
+    for client_id in client_ids:
         demands.append(Demand(name='Reestruturação do TI',
                               description='Mudança na metodologia utilizada',
                               funcionalities='Robos', final_date=date1,
-                              platform='desktop'))
+                              platform='desktop', client_id=client_id))
         db.session.add(demands[-1])
         db.session.commit()
     return demands
@@ -57,7 +57,7 @@ def test():
     try:
         client = generate_client(1)[0]
         service_providers = generate_service_provider(3)
-        demands = generate_demand(2)
+        demands = generate_demand([client.id, client.id])
         project1 = generate_project(client.id, demands[0].id)
         project2 = generate_project(client.id, demands[1].id)
 
