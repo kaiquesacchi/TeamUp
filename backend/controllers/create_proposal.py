@@ -5,7 +5,7 @@ from flask import request
 import datetime
 
 # Database
-from models import ServiceProvider, Demand, Proposal, AssociationServiceProviderProposal
+from models import ServiceProvider, Demand, Proposal, AssociationServiceProviderProposal, Project
 from __main__ import db
 
 
@@ -34,8 +34,7 @@ class CreateProposal(Resource):
         print(requestData.get('serviceProviderIds'))
         # proposal
         proposal = Proposal(demand_id=requestData.get('demand'), client_approval=False,
-                            cost=requestData.get('value'), final_date=datetime.datetime.now())
-        db.session.add(proposal)
+                            cost=requestData.get('value'), final_date=(datetime.datetime.now() + datetime.timedelta(days=30)))
         # associative table
         for servicerId in requestData.get('serviceProviderIds'):
             servicer = ServiceProvider.query.get(servicerId)
@@ -44,6 +43,14 @@ class CreateProposal(Resource):
             db.session.add(association)
         print(Proposal.query.all())
 
+        # proposal ==> project
+        proposal.client_approval = True
+        demand = Demand.query.get(proposal.demand_id)
+        project = Project(cost=proposal.cost, spending=0, client_id=demand.client_id, final_date=proposal.final_date, demand_id=proposal.demand_id)
+        print(Project.query.all())
+        db.session.add(project)
+
+        db.session.add(proposal)
         db.session.commit()
         print(Proposal.query.all())
         return {'status': 'criada'}
