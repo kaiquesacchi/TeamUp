@@ -94,6 +94,8 @@ def test():
         db.session.add(association13)
         db.session.add(association14)
 
+        db.session.commit()
+
         print(client)
         print("_" * 80)
         for s in service_providers: print(s)

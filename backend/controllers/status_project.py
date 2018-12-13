@@ -1,14 +1,24 @@
 from flask_restful import Resource
 from flask import request
 
+# Database
+from models import Project
+from __main__ import db
+
 
 class StatusProject(Resource):
 
-    def get(self):
+    def get(self, id):
+        project = Project.query.get(id)
+        print(Project.query.all())
+        serviceProviders = []
+        for association in project.service_providers:
+            serviceProviders.append([association.service_provider.name, str(association.service_provider.cost_per_project),
+                                    association.service_provider.skills])
         return {
-            'foreseenDate': '24/10/2018',
-            'spending': 1200,
-            'foreseenSpending': 600,
+            'foreseenDate': str(project.final_date),
+            'spending': project.spending,
+            'foreseenSpending': project.cost,
             'solvedProblems': 60,
             'deliveries': {
                 'value': [[
@@ -30,12 +40,7 @@ class StatusProject(Resource):
                 'Relatório final'
             ],
             'employees': {
-                'value': [
-                    ["Mike Wazalski", "R$1536,738", "Marketing"],
-                    ["Jessica Alba", "R$3223,789", "Programação"],
-                    ["Roberto Freitas", "R$4256,142", "Engenharia de software"],
-                    ["Bruce Wayne", "R$1838,735", "Relações humanas"]
-                ],
+                'value': serviceProviders,
                 'last_update': '3 dias atrás'
             }
         }

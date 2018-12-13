@@ -5,7 +5,7 @@ from flask import request
 import datetime
 
 # Database
-from models import ServiceProvider, Demand, Proposal, AssociationServiceProviderProposal, Project
+from models import ServiceProvider, Demand, Proposal, AssociationServiceProviderProposal, Project, AssociationServiceProviderProject
 from __main__ import db
 
 
@@ -47,6 +47,13 @@ class CreateProposal(Resource):
         proposal.client_approval = True
         demand = Demand.query.get(proposal.demand_id)
         project = Project(cost=proposal.cost, spending=0, client_id=demand.client_id, final_date=proposal.final_date, demand_id=proposal.demand_id)
+        for servicerId in requestData.get('serviceProviderIds'):
+            servicer = ServiceProvider.query.get(servicerId)
+            print(servicer)
+            association = AssociationServiceProviderProject(project, servicer)
+            db.session.add(association)
+        print(Proposal.query.all())
+
         print(Project.query.all())
         db.session.add(project)
 
