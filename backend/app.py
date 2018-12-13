@@ -57,9 +57,9 @@ try:
     date2 = datetime.datetime.strptime('15/8/2020', '%d/%m/%Y')
 
     demand1 = Demand(name='Reestruturação do TI', description='Mudança nas metodologias utilizadas', funcionalities='Robos',
-                        final_date=date1, platform='desktop')
+                        final_date=date1, platform='desktop', client_id=client1.id)
     demand2 = Demand(name='Criação de um app', description='App nativo para divulgação', funcionalities='Touch',
-                        final_date=date2, platform='mobile')
+                        final_date=date2, platform='mobile', client_id=client1.id)
     db.session.add(demand1)
     db.session.add(demand2)
     print(Demand.query.all())
