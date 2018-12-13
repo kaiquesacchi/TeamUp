@@ -5,7 +5,7 @@ from flask import request
 import datetime
 
 # Database
-from models import ServiceProvider, Demand, Proposal
+from models import ServiceProvider, Demand, Proposal, AssociationServiceProviderProposal
 from __main__ import db
 
 
@@ -19,10 +19,11 @@ class CreateProposal(Resource):
         allDemands = Demand.query.all()
         demands = []
         for demand in allDemands:
-            demands.append({
-                'name': demand.name,
-                'value': demand.id,
-            })
+            if (len(demand.project) == 0):
+                demands.append({
+                    'name': demand.name,
+                    'value': demand.id,
+                })
         return {
             'professionals': professionals,
             'demands': demands
@@ -30,10 +31,19 @@ class CreateProposal(Resource):
 
     def post(self):
         requestData = request.get_json()
+        print(requestData.get('serviceProviderIds'))
+        # proposal
         proposal = Proposal(demand_id=requestData.get('demand'), client_approval=False,
                             cost=requestData.get('value'), final_date=datetime.datetime.now())
         db.session.add(proposal)
+        # associative table
+        for servicerId in requestData.get('serviceProviderIds'):
+            servicer = ServiceProvider.query.get(servicerId)
+            print(servicer)
+            association = AssociationServiceProviderProposal(proposal, servicer)
+            db.session.add(association)
+        print(Proposal.query.all())
+
         db.session.commit()
-        print(requestData.get('serviceProviderIds'))
         print(Proposal.query.all())
         return {'status': 'criada'}

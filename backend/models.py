@@ -146,6 +146,7 @@ class Demand(Base):
     platform = db.Column(db.String(100), nullable=False)
     final_date = db.Column(db.Date, nullable=False)
     proposals = db.relationship('Proposal', backref='demand', lazy=True)
+    project = db.relationship('Project', backref='demand', lazy=True)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
                           nullable=False)
     # project = db.relationship('Project', uselist=False)
@@ -175,3 +176,8 @@ class Proposal(Base):
     client_approval = db.Column(db.Boolean, nullable=False)
     demand_id = db.Column(db.Integer, db.ForeignKey('demand.id'),
                           nullable=False)
+
+    def __repr__(self):
+        return "Proposal('{}', '{}', '{}', '{}', '{}', '{}')".format(
+            self.id, self.cost, self.final_date, self.client_approval,
+            self.demand_id, self.service_providers)
