@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 const API_URL = process.env.API_URL || 'http://localhost:5000';
 
@@ -39,7 +42,10 @@ class SignUp extends Component {
 			},
 		});
 		const resultJSON = await result.json();
-		console.log(resultJSON);
+		cookies.set('user_name', resultJSON.user_name, { path: '/' });
+		cookies.set('user_id', resultJSON.user_id, { path: '/' });
+		console.log(cookies.get('user_name'));
+		console.log(cookies.get('user_id'));
 		if(resultJSON.user_id){
 			this.props.history.push("/auth/complete-sign-up");
 		}

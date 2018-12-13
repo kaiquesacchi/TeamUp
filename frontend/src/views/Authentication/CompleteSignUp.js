@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 
 import ImageButtons from 'components/CustomButtons/ImageButtons.js'
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
 
 class CompleteSignUp extends Component {
 	constructor(props){
@@ -42,7 +45,7 @@ class CompleteSignUp extends Component {
 	<div className="IntroBackground Colapsed">
 	</div>
 	<div className="IntroForm">
-		<h1>Seja bem vindo, Fernando</h1>
+		<h1>Seja bem vindo, {cookies.get('user_name')}</h1>
 		<h2>Já estamos terminando, só precisamos saber</h2>
 		<h2>com qual desses perfís você se identifica: </h2>
 		<ImageButtons images={this.state.images} />
