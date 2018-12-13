@@ -6,6 +6,7 @@ from models import Client
 class Login(Resource):
 
     def post(self):
+        e = 'Problema com username/senha ou database'
         try:
             requestData = request.get_json()
             client = Client.query.filter_by(
@@ -16,9 +17,9 @@ class Login(Resource):
                             'user_id': client.id,
                             'user_name': client.name
                             }
-            raise
         except Exception as e:
-            return {
-                'login': False,
-                'error': e
-            }
+            pass
+        return {
+            'login': False,
+            'error': e
+        }

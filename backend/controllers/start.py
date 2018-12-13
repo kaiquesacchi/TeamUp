@@ -1,5 +1,7 @@
 from flask_restful import Resource
+from flask import request
 
+from models import Client
 
 class Start(Resource):
 
@@ -21,6 +23,9 @@ class Start(Resource):
     ]
 
     def get(self):
+        print("\n _"*20)
+        # print(Client.query.get(request.args['user_id']))
+        
         return {
             'earnings': self.earnings,
             'employees': self.employees,

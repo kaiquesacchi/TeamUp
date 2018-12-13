@@ -36,13 +36,13 @@ import {
 } from "variables/charts.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
-import ImageButtons from 'components/CustomButtons/ImageButtons.js'
+import ImageButtons from 'components/CustomButtons/ImageButtons.js';
 
 import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || ('http://localhost:5000');
 
 
 class Start extends React.Component {
@@ -76,7 +76,7 @@ class Start extends React.Component {
 	}
 
 	async componentDidMount(){
-		const result = await fetch(API_URL + '/start', {
+		const result = await fetch(API_URL + '/start?user_id=' + cookies.get('user_id'), {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',
