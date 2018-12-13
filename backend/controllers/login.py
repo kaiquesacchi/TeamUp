@@ -10,9 +10,9 @@ class Login(Resource):
         try:
             requestData = request.get_json()
             client = Client.query.filter_by(email=requestData.get('email')).first()
-            print('\n'*8 + str(client))
-            if client.password == requestData.get('password'):
-                return {'login': True}
+            if client:
+                if client.password == requestData.get('password'):
+                    return {'login': True}
         except:
             pass
         return {'login': False}
