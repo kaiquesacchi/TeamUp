@@ -16,6 +16,7 @@ import avatar from "assets/img/faces/marc.jpg";
 
 const API_URL = process.env.API_URL || 'http://localhost:5000';
 
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",

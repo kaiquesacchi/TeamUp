@@ -3,6 +3,7 @@ from flask_restful import Api
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.ext.declarative import declarative_base
+import os
 
 app = Flask(__name__)
 api = Api(app)
@@ -47,5 +48,7 @@ def testes():
     return str("Fim")
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+port = int(os.environ.get("PORT", 5000))
+app.run(host='0.0.0.0', port=port)
+
