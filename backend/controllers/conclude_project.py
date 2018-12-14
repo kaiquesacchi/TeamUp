@@ -1,25 +1,34 @@
 from flask_restful import Resource
 from flask import request
 
+# Database
+from models import Project
+from __main__ import db
+
 
 class ConcludeProject(Resource):
 
-    projetosConcluidos = []
-
     def get(self):
+        allProjects = Project.query.all()
+        projects = []
+        for project in allProjects:
+            if (not project.finalized):
+                projects.append({
+                    'name': project.origin_demand.name,
+                    'value': project.id,
+                })
         return {
-            'endDate': '14/11/2018',
-            'spending': 2000,
-            'foreseen': 1500,
-            'solvedProblems': 20
+            'projects': projects
         }
 
     def post(self):
         requestData = request.get_json()
         prop = {
                 'nps': requestData.get('nps'),
-                'comment': requestData.get('comment')
+                'comment': requestData.get('comment'),
             }
-        self.projetosConcluidos.append(prop)
-        print(self.projetosConcluidos)
+        project = Project.query.get(requestData.get('project'))
+        project.finalized = True
+        db.session.add(project)
+        db.session.commit()
         return {'projeto': prop}

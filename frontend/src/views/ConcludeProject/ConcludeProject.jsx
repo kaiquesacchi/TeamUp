@@ -3,14 +3,9 @@ import React, { Component } from "react";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputLabel from "@material-ui/core/InputLabel";
 import TextField from '@material-ui/core/TextField';
-import Icon from "@material-ui/core/Icon";
-// @material-ui/core icons
-import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
-import DateRange from "@material-ui/icons/DateRange";
-import LocalOffer from "@material-ui/icons/LocalOffer";
-import Accessibility from "@material-ui/icons/Accessibility";
-import Update from "@material-ui/icons/Update";
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -20,10 +15,6 @@ import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
-import Danger from "components/Typography/Danger.jsx";
-
-import avatar from "assets/img/faces/marc.jpg";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
@@ -37,10 +28,9 @@ class ConcludeProject extends Component {
       nps: '',
       comment: '',
       created: false,
-      endDate: 'DD/MM/AAAA',
-      spending: '',
-      solvedProblems: '',
-      foreseen: '',
+      project: '',
+      projects: [],
+      errorProject: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -56,10 +46,7 @@ class ConcludeProject extends Component {
     });
     const resultJSON = await result.json();
     this.setState({
-      endDate: resultJSON.endDate,
-      spending: resultJSON.spending,
-      solvedProblems: resultJSON.solvedProblems,
-      foreseen: resultJSON.foreseen,
+      projects: resultJSON.projects,
     });
   }
 
@@ -75,80 +62,31 @@ class ConcludeProject extends Component {
 
   async handleSubmit(e) {
     e.preventDefault();
-    const result = await fetch(API_URL + '/projeto/concluir', {
-      method: 'POST',
-      body: JSON.stringify(this.state),
-      headers: {
-        'content-type': 'application/json',
-      },
-    });
-    const resultJSON = await result.json();
-    this.setState({
-      nps: '',
-      comment: '',
-      created: true,
-    });
+    if (this.state.project === '') {
+      this.setState({errorProject: true});
+    } else {
+      const result = await fetch(API_URL + '/projeto/concluir', {
+        method: 'POST',
+        body: JSON.stringify(this.state),
+        headers: {
+          'content-type': 'application/json',
+        },
+      });
+      const resultJSON = await result.json();
+      this.setState({
+        nps: '',
+        comment: '',
+        created: true,
+        project: '',
+        errorProject: false,
+      });
+    }
   }
 
   render() {
     const { classes } = this.props;
     return (
       <div>
-        <GridContainer>
-          <GridItem xs={12} sm={6} md={4}>
-            <Card>
-              <CardHeader color="warning" stats icon>
-                <CardIcon color="info">
-                  <DateRange/>
-                </CardIcon>
-                <p className={classes.cardCategory}>Data de término</p>
-                <h3 className={classes.cardTitle}>
-                  {this.state.endDate} <small></small>
-                </h3>
-              </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Danger>
-                  </Danger>
-                  <a href="#pablo" onClick={e => e.preventDefault()}>
-                  </a>
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <Card>
-              <CardHeader color="success" stats icon>
-                <CardIcon color="success">
-                  <Store />
-                </CardIcon>
-                <p className={classes.cardCategory}>Gasto do projeto</p>
-                <h3 className={classes.cardTitle}>R${this.state.spending}</h3>
-              </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                  <Store />
-                  Previsto de R${this.state.foreseen}
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-          <GridItem xs={12} sm={6} md={4}>
-            <Card>
-              <CardHeader color="danger" stats icon>
-                <CardIcon color="warning">
-                  <Icon>info_outline</Icon>
-                </CardIcon>
-                <p className={classes.cardCategory}>Problemas resolvidos</p>
-                <h3 className={classes.cardTitle}>{this.state.solvedProblems}</h3>
-              </CardHeader>
-              <CardFooter stats>
-                <div className={classes.stats}>
-                </div>
-              </CardFooter>
-            </Card>
-          </GridItem>
-        </GridContainer>
         <GridContainer>
           <GridItem xs={12}>
             <Card>
@@ -201,6 +139,29 @@ class ConcludeProject extends Component {
                       />
                     </GridItem>
                   </GridContainer>
+                  <FormControl className={classes.selectField}>
+                    <InputLabel htmlFor="project">Projeto</InputLabel>
+                    <Select
+                      value={this.state.project}
+                      onChange={this.handleChange}
+                      name="project"
+                      inputProps={{
+                        id: 'project',
+                      }}
+                    >
+                      <MenuItem value="">
+                      <em>-</em>
+                      </MenuItem>
+                      {this.state.projects.map((project, i) =>
+                        <MenuItem key={i} value={project.value}>{project.name}</MenuItem>
+                      )}
+                    </Select>
+								</FormControl>
+								{this.state.errorProject &&
+									<div style={{fontSize: '1.5rem', padding: '15px 0'}}>
+										É preciso selecionar um projeto!
+									</div>
+								}
                 </CardBody>
                 <CardFooter>
                   <Button color="primary" type="submit">Finalizar</Button>

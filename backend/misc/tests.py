@@ -55,6 +55,8 @@ def generate_project(client_id, demand_id):
 
 def test():
     print("\n" * 10 + "Inicio do Teste\n" + "_" * 80)
+    db.drop_all()
+    db.create_all()
     try:
         client = generate_client(1)[0]
         service_providers = generate_service_provider(3)

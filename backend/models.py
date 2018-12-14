@@ -118,6 +118,7 @@ class Project(Base):
     final_date = db.Column(db.Date, nullable=False)
     spending = db.Column(db.Float, nullable=False)
     tasks_completed = db.Column(db.Integer, nullable=True)
+    finalized = db.Column(db.Boolean, unique=False, default=False)
     # Relationships
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'),
                           nullable=False)
