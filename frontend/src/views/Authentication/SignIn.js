@@ -5,7 +5,7 @@ import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
 
 class SignIn extends Component {
 	constructor() {

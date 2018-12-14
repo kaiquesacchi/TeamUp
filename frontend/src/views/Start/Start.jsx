@@ -42,12 +42,12 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-const API_URL = process.env.API_URL || ('http://localhost:5000');
+const API_URL = process.env.API_URL || ('https://teamup-servidor.herokuapp.com');
 
 
 class Start extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			earnings: {
 				value: 0,
@@ -64,11 +64,17 @@ class Start extends React.Component {
 					color: '#2bb551',
 					title: 'Crie um Projeto',
 					width: '50%',
+					onClick: function() {
+						props.history.push("/demanda")
+					}
 				},
 				{
 					color: '#fc9a00',
 					title: 'Acompanhe seus Projetos',
 					width: '50%',
+					onClick: function() {
+						props.history.push("/projetos")
+					}
 				},
 			],
 			tasks: [],

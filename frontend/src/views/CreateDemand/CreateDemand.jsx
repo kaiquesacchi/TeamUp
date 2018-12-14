@@ -14,7 +14,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 
 import avatar from "assets/img/faces/marc.jpg";
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
 
 
 const styles = {
