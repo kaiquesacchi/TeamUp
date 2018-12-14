@@ -10,7 +10,7 @@ import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
 
 const styles = {
 	cardCategoryWhite: {

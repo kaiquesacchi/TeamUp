@@ -27,7 +27,7 @@ import avatar from "assets/img/faces/marc.jpg";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
 
 class ConcludeProject extends Component {
   constructor() {

@@ -20,7 +20,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
-const API_URL = process.env.API_URL || 'http://localhost:5000';
+const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
 
 class CreateProposal extends Component {
 	constructor() {
