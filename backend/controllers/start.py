@@ -24,7 +24,7 @@ class Start(Resource):
 
     def get(self):
         print("\n _"*20)
-        # print(Client.query.get(request.args['user_id']))
+        print(Client.query.get(request.args['user_id']))
         
         return {
             'earnings': self.earnings,

@@ -42,7 +42,7 @@ import Cookies from 'universal-cookie';
 
 const cookies = new Cookies();
 
-const API_URL = process.env.API_URL || ('https://teamup-servidor.herokuapp.com');
+const API_URL = process.env.API_URL || ('http://0.0.0.0:5000');
 
 
 class Start extends React.Component {

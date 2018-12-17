@@ -14,7 +14,11 @@ import CardFooter from "components/Card/CardFooter.jsx";
 
 import avatar from "assets/img/faces/marc.jpg";
 
-const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
+const API_URL = process.env.API_URL || 'http://0.0.0.0:5000';
 
 
 const styles = {
@@ -46,6 +50,7 @@ class CreateDemand extends Component {
       funcionalities: '',
       maxDate: '',
       created: false,
+      user_id: cookies.get('user_id')
     };
 
     this.handleChange = this.handleChange.bind(this);

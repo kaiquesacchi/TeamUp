@@ -71,7 +71,7 @@ class Client(User):
         User.__init__(self, name, email, password)
     
     def __repr__(self):
-        return "Client('{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.email, self.type, self.projects)
+        return "Client('{}', '{}', '{}', '{}', '{}', '{}')".format(self.id, self.name, self.email, self.type, self.demands, self.projects)
     __mapper_args__ = {
         'polymorphic_identity': 'client',
     }

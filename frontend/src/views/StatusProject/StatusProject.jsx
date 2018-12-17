@@ -29,7 +29,7 @@ import {
 
 import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
-const API_URL = process.env.API_URL || 'https://teamup-servidor.herokuapp.com';
+const API_URL = process.env.API_URL || 'http://0.0.0.0:5000';
 
 class StatusProject extends Component {
   constructor() {
