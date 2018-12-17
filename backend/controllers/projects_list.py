@@ -9,7 +9,7 @@ from __main__ import db
 class ProjectsList(Resource):
 
     def get(self):
-        allProjects = Project.query.all()
+        allProjects = Project.query.filter_by(client_id=request.args['user_id'])
         projects = []
         ids = []
         for proj in allProjects:

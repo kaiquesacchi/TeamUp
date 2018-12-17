@@ -10,6 +10,10 @@ import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
+import Cookies from 'universal-cookie';
+
+const cookies = new Cookies();
+
 const API_URL = process.env.API_URL || 'http://0.0.0.0:5000';
 
 const styles = {
@@ -53,7 +57,7 @@ class ProjectsList extends Component {
 	}
 
 	async componentDidMount() {
-		const result = await fetch(API_URL + '/projetos', {
+		const result = await fetch(API_URL + '/projetos?user_id=' + cookies.get('user_id'), {
 			method: 'GET',
 			headers: {
 				'content-type': 'application/json',
