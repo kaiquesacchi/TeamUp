@@ -129,7 +129,7 @@ class Start extends React.Component {
 					<CardIcon color="success">
 					<Store />
 					</CardIcon>
-					<p className={classes.cardCategory}>Lucro</p>
+					<p className={classes.cardCategory}>Custos</p>
 					<h3 className={classes.cardTitle}>R${this.state.earnings.value}</h3>
 				</CardHeader>
 					<CardFooter stats>

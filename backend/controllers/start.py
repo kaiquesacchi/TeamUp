@@ -3,15 +3,16 @@ from flask import request
 
 from models import Client
 
+
 class Start(Resource):
 
-    earnings = {
-        'value': 12520,
-        'last_update': '3 dias atrás'
+    costs = {
+        'value': 0,
+        'last_update': 'Agora'
     }
     employees = {
-        'value': 15,
-        'last_update': 'Uma semana atrás'
+        'value': 0,
+        'last_update': 'Agora'
     }
     graph_values = [[542, 443, 320, 780, 553, 453,
                      326, 434, 568, 610, 756, 895]]
@@ -23,11 +24,14 @@ class Start(Resource):
     ]
 
     def get(self):
-        print("\n _"*20)
-        print(Client.query.get(request.args['user_id']))
-        
+        print("\n_" * 20)
+        projects = Client.query.get(request.args['user_id']).projects
+
+        self.costs['value'] = sum([float(i.cost) for i in projects])
+        self.employees['value'] = sum(
+            [len(i.service_providers) for i in projects])
         return {
-            'earnings': self.earnings,
+            'earnings': self.costs,
             'employees': self.employees,
             'graph_values': self.graph_values,
             'tasks': self.tasks
